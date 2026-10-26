@@ -1,0 +1,207 @@
+[
+  {
+    "path": "src/cli.mjs",
+    "bytes": 788,
+    "sha256": "4d326ce5af6ed68503582e220e41b6921aaf7de00227428e92b52cbe8ba71bd6"
+  },
+  {
+    "path": "src/dispatch.mjs",
+    "bytes": 713,
+    "sha256": "9bb2b0084f3c495cfcb9e39a9ba0ec043f3e3aa0a1fac64d167a64613b21aaf8"
+  },
+  {
+    "path": "src/mcp.mjs",
+    "bytes": 3082,
+    "sha256": "ea3c169cfbb2f63103a737c7659398f324c3449a38cd3a4049499215b855cf56"
+  },
+  {
+    "path": "src/vendor/deck-engine.mjs",
+    "bytes": 71199,
+    "sha256": "dcdba67f13b72fdd67b89c7348a6b39a7139d5b814d4546bc5a8f0d83af201f3"
+  },
+  {
+    "path": "src/workbench.mjs",
+    "bytes": 18758,
+    "sha256": "9346e9db6e2124620a6709aee2bd33d72be9e3059a05b43b97206280658c92b3"
+  },
+  {
+    "path": "tools/configure.mjs",
+    "bytes": 4692,
+    "sha256": "fe938b4955419743d7e0a4acaadfbac312832299ce77cb8ac388416191eb193a"
+  },
+  {
+    "path": "tools/extract-engine.mjs",
+    "bytes": 4410,
+    "sha256": "38448aef089e4b96f74d656bbafa74910881abb8b9f082b0d7254a0cf6146e6d"
+  },
+  {
+    "path": "tools/package.mjs",
+    "bytes": 2139,
+    "sha256": "09b2ec62d486f6fe73ce2ff795904a701d5975711d7cad3127f80f3badbed9d9"
+  },
+  {
+    "path": "tools/smoke.mjs",
+    "bytes": 1293,
+    "sha256": "2cf1350765a3d186ced26f5dfe82a661740feb93f9fc9bcf3c3f97818284fe77"
+  },
+  {
+    "path": "tools/unconfigure.mjs",
+    "bytes": 2430,
+    "sha256": "f36bb23e15b69a7d26dce07660f9eb6354e6aeb92f212ceb3c9acd1843706df3"
+  },
+  {
+    "path": "tools/verify-registration.mjs",
+    "bytes": 2331,
+    "sha256": "78fcc9332bff56d3b75a4294c01da54d1427bca905e1818fbee005ecec756b6f"
+  },
+  {
+    "path": "skills/ppt-workbench/SKILL.md",
+    "bytes": 4689,
+    "sha256": "e5749e142bfd446f8594a2380e6a5509fdcec66f068ba957e43a577a16d2a887"
+  },
+  {
+    "path": "skills/ppt-workbench/agents/openai.yaml",
+    "bytes": 314,
+    "sha256": "6779eb54579e7193e7b674a895c173cde8ec82c14e008bd6394903da7211c860"
+  },
+  {
+    "path": "skills/ppt-workbench/references/dialect.md",
+    "bytes": 4392,
+    "sha256": "ab27b75b9e2d0aa4fd489cdabe7822ac1e6c59dddf7ee7455165b8d195b6e193"
+  },
+  {
+    "path": "skills/ppt-workbench/scripts/run.mjs",
+    "bytes": 562,
+    "sha256": "be9355fd6c425f363211952a298f3b98f709f555ce1d0455242076b6a3d96405"
+  },
+  {
+    "path": "skills/ppt-workbench/scripts/run.ps1",
+    "bytes": 234,
+    "sha256": "bde3deb7c2830e8343117c6a4b840ee2392ab60db2bbb646545033aff97c69cc"
+  },
+  {
+    "path": "examples/验收示例/assets/pixel.png",
+    "bytes": 68,
+    "sha256": "97f48936d4ff6a820710d579db8eb2ca1b8c6934d447f1cabad96ab1b832a8bb"
+  },
+  {
+    "path": "examples/验收示例/powerpoint-render/slide-1.png",
+    "bytes": 63494,
+    "sha256": "86b82dfce55ba40e17f99dbc08a18e24094f07df8c1cf69c3e57b534c67f632f"
+  },
+  {
+    "path": "examples/验收示例/powerpoint-render/slide-2.png",
+    "bytes": 44098,
+    "sha256": "e9c64b8bcc4d4a9d05259fc14614eb83eb9503e084ad65b265e3edeb2cb8cf0a"
+  },
+  {
+    "path": "examples/验收示例/powerpoint-render/slide-3.png",
+    "bytes": 31754,
+    "sha256": "ea24a0f1affa29f1c2c2730134c773fea3b1c55b5c6309e4f6b9076f0ca2c735"
+  },
+  {
+    "path": "examples/验收示例/slides/cover.html",
+    "bytes": 389,
+    "sha256": "3b11ff6d03204bc0f98cbcc5fb1df2d179dc1c02691f802fea49b50035929971"
+  },
+  {
+    "path": "examples/验收示例/slides/table.html",
+    "bytes": 565,
+    "sha256": "904491411622dbcdba806a053862a95ef79d0dce12b3c175223293408be7973a"
+  },
+  {
+    "path": "examples/验收示例/slides/visual.html",
+    "bytes": 521,
+    "sha256": "3809dba045953e1877604ebb6ea28e47e2cb24c71a0cca3c83564557de226d20"
+  },
+  {
+    "path": "examples/验收示例/super-adc-deck.json",
+    "bytes": 95,
+    "sha256": "abf0b597da46939e83939986e2129c900c2340f991af9d123e2f28a7cb40af37"
+  },
+  {
+    "path": "examples/验收示例/验收示例.pptx",
+    "bytes": 11627,
+    "sha256": "6dc41a19d1030d5a983fd6587c6216d43e39cce234c9c4f9bf7ae674c5710168"
+  },
+  {
+    "path": "docs/INSTALL_FOR_CODEX.md",
+    "bytes": 4629,
+    "sha256": "c67ec850515a580c4219c48e401167970258e5f77cac44b85d8630dfc4294c40"
+  },
+  {
+    "path": "docs/USAGE.md",
+    "bytes": 3309,
+    "sha256": "45f0fc3f9e074ca7caa0c2f6c3fece0b7b93cb3fcbfdbdeef8107d6318e32801"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 1876,
+    "sha256": "1e3c0919ba94252f8ce09a558a557ad28d4cc1fffc505cd4677360c627bbe4d0"
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 191,
+    "sha256": "4a0e7691573f516e7719a1427589b8db8cb013a973e0b8b8ff7fb07fa6dc121a"
+  },
+  {
+    "path": "package.json",
+    "bytes": 525,
+    "sha256": "cd7191575cec43e4efbc60bdf82797831b88fa0325c04b2921bc78e112b1c4a6"
+  },
+  {
+    "path": "package-lock.json",
+    "bytes": 56785,
+    "sha256": "1b22cbdc721883a39cc90575ed4e66d96b8a02503d47ec9e6f68ff711e11a4fc"
+  },
+  {
+    "path": "PROVENANCE.json",
+    "bytes": 7142,
+    "sha256": "4257737a48523bc3401eda15f6e791f2bae19e94f2371476358fdbe423b4e40c"
+  },
+  {
+    "path": "README.md",
+    "bytes": 9194,
+    "sha256": "155c0425a5c00c4324d889c1970c701fbf22f04c945112ac24257c33085c1e9c"
+  },
+  {
+    "path": "验收说明.md",
+    "bytes": 2970,
+    "sha256": "2a2931fce91ec16be128dcd9d049929d82b12eecfdb357881cac9194eba94142"
+  },
+  {
+    "path": "install.ps1",
+    "bytes": 5256,
+    "sha256": "2ff7f66a3ce1e5594f24a11f631c5db4d98f470eeb32282ba7386b0ff7562005"
+  },
+  {
+    "path": "install.cmd",
+    "bytes": 154,
+    "sha256": "4fdde01e46e5f7a38596360c686623335798427136a179eff6194ee15486fff5"
+  },
+  {
+    "path": "verify.ps1",
+    "bytes": 875,
+    "sha256": "5e8b70c47e26c7ebc8b0204eb9aba4cf282bbd19e257197ceb22d6b0924d0139"
+  },
+  {
+    "path": "uninstall.ps1",
+    "bytes": 564,
+    "sha256": "8f6083b069f058c51e48afad614cbdf2f7c2b5d5aeb7b1d38814b073fb25aa57"
+  },
+  {
+    "path": "tests/configure.test.mjs",
+    "bytes": 2714,
+    "sha256": "bc90e079f59898f9e0a641fa8df94c6285c7ac33663f140789a8874026778c98"
+  },
+  {
+    "path": "tests/integration.test.mjs",
+    "bytes": 7036,
+    "sha256": "7a0f7ff320817ef7a126a0a8967af88a21375048ab044abf13a4327dc9d5b675"
+  },
+  {
+    "path": "tests/mcp.test.mjs",
+    "bytes": 1251,
+    "sha256": "4ba9941ec03cbe099d7f7ab365dad162142be91e2b477c422d720f46b1f10ea1"
+  }
+]

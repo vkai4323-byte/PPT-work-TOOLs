@@ -1,0 +1,396 @@
+{
+  "sourceProduct": "SuperADC",
+  "sourceVersion": "0.580.0",
+  "sourceBundleSHA256": "ba844e3ab8842a90b7064f9599a3c949494618a5da832e88535589b28d06fd6d",
+  "extractedSHA256": "dcdba67f13b72fdd67b89c7348a6b39a7139d5b814d4546bc5a8f0d83af201f3",
+  "roots": {
+    "Um": "readDeck",
+    "p_e": "wrapSlide",
+    "u_e": "resolveFont",
+    "aLt": "writePptx",
+    "y_e": "uniqueExportPath"
+  },
+  "modifications": [
+    "Use pinned jszip instead of bundled copy",
+    "Resolve optional font directory under PPT_WORKBENCH_HOME or ~/.ppt-workbench",
+    "Replace host measurement outside this vendor file with independent Playwright adapter",
+    "Remove table bodyPr insets/anchor so measured tcPr padding and vertical alignment are honored"
+  ],
+  "declarations": [
+    {
+      "name": "kx",
+      "sourceLine": null,
+      "override": true
+    },
+    {
+      "name": "QE",
+      "sourceLine": null,
+      "override": true
+    },
+    {
+      "name": "Ot",
+      "sourceLine": 7,
+      "override": false
+    },
+    {
+      "name": "J",
+      "sourceLine": 8,
+      "override": false
+    },
+    {
+      "name": "z",
+      "sourceLine": 10,
+      "override": false
+    },
+    {
+      "name": "fr",
+      "sourceLine": 36,
+      "override": false
+    },
+    {
+      "name": "yc",
+      "sourceLine": 15461,
+      "override": false
+    },
+    {
+      "name": "yw",
+      "sourceLine": 15461,
+      "override": false
+    },
+    {
+      "name": "Mte",
+      "sourceLine": 15465,
+      "override": false
+    },
+    {
+      "name": "B6",
+      "sourceLine": 15500,
+      "override": false
+    },
+    {
+      "name": "xh",
+      "sourceLine": 15508,
+      "override": false
+    },
+    {
+      "name": "Um",
+      "sourceLine": 15534,
+      "override": false
+    },
+    {
+      "name": "Wf",
+      "sourceLine": 125448,
+      "override": false
+    },
+    {
+      "name": "i0",
+      "sourceLine": 125448,
+      "override": false
+    },
+    {
+      "name": "iFt",
+      "sourceLine": 125448,
+      "override": false
+    },
+    {
+      "name": "CM",
+      "sourceLine": 125448,
+      "override": false
+    },
+    {
+      "name": "OY",
+      "sourceLine": 125448,
+      "override": false
+    },
+    {
+      "name": "Gf",
+      "sourceLine": 125449,
+      "override": false
+    },
+    {
+      "name": "Vf",
+      "sourceLine": 125456,
+      "override": false
+    },
+    {
+      "name": "RM",
+      "sourceLine": 125462,
+      "override": false
+    },
+    {
+      "name": "oFt",
+      "sourceLine": 125468,
+      "override": false
+    },
+    {
+      "name": "l_e",
+      "sourceLine": 125472,
+      "override": false
+    },
+    {
+      "name": "$F",
+      "sourceLine": 125485,
+      "override": false
+    },
+    {
+      "name": "u_e",
+      "sourceLine": 125488,
+      "override": false
+    },
+    {
+      "name": "$Ft",
+      "sourceLine": 126397,
+      "override": false
+    },
+    {
+      "name": "FFt",
+      "sourceLine": 127131,
+      "override": false
+    },
+    {
+      "name": "LFt",
+      "sourceLine": 127132,
+      "override": false
+    },
+    {
+      "name": "jFt",
+      "sourceLine": 127149,
+      "override": false
+    },
+    {
+      "name": "LY",
+      "sourceLine": 127150,
+      "override": false
+    },
+    {
+      "name": "d_e",
+      "sourceLine": 127153,
+      "override": false
+    },
+    {
+      "name": "f_e",
+      "sourceLine": 127156,
+      "override": false
+    },
+    {
+      "name": "p_e",
+      "sourceLine": 127159,
+      "override": false
+    },
+    {
+      "name": "KFt",
+      "sourceLine": 127258,
+      "override": false
+    },
+    {
+      "name": "UY",
+      "sourceLine": 127285,
+      "override": false
+    },
+    {
+      "name": "BY",
+      "sourceLine": 127286,
+      "override": false
+    },
+    {
+      "name": "WFt",
+      "sourceLine": 127293,
+      "override": false
+    },
+    {
+      "name": "GFt",
+      "sourceLine": 127299,
+      "override": false
+    },
+    {
+      "name": "Gt",
+      "sourceLine": 127299,
+      "override": false
+    },
+    {
+      "name": "lf",
+      "sourceLine": 127299,
+      "override": false
+    },
+    {
+      "name": "mh",
+      "sourceLine": 127299,
+      "override": false
+    },
+    {
+      "name": "Ti",
+      "sourceLine": 127299,
+      "override": false
+    },
+    {
+      "name": "ni",
+      "sourceLine": 127300,
+      "override": false
+    },
+    {
+      "name": "ql",
+      "sourceLine": 127301,
+      "override": false
+    },
+    {
+      "name": "qY",
+      "sourceLine": 127305,
+      "override": false
+    },
+    {
+      "name": "MI",
+      "sourceLine": 127308,
+      "override": false
+    },
+    {
+      "name": "VFt",
+      "sourceLine": 127319,
+      "override": false
+    },
+    {
+      "name": "OM",
+      "sourceLine": 127320,
+      "override": false
+    },
+    {
+      "name": "JFt",
+      "sourceLine": 127325,
+      "override": false
+    },
+    {
+      "name": "Cg",
+      "sourceLine": 127334,
+      "override": false
+    },
+    {
+      "name": "zY",
+      "sourceLine": 127337,
+      "override": false
+    },
+    {
+      "name": "YFt",
+      "sourceLine": 127341,
+      "override": false
+    },
+    {
+      "name": "MU",
+      "sourceLine": 127342,
+      "override": false
+    },
+    {
+      "name": "XFt",
+      "sourceLine": 127348,
+      "override": false
+    },
+    {
+      "name": "ZFt",
+      "sourceLine": 127348,
+      "override": false
+    },
+    {
+      "name": "QFt",
+      "sourceLine": 127349,
+      "override": false
+    },
+    {
+      "name": "DM",
+      "sourceLine": 127360,
+      "override": false
+    },
+    {
+      "name": "NM",
+      "sourceLine": 127366,
+      "override": false
+    },
+    {
+      "name": "eLt",
+      "sourceLine": 127370,
+      "override": false
+    },
+    {
+      "name": "h_e",
+      "sourceLine": 127370,
+      "override": false
+    },
+    {
+      "name": "Rg",
+      "sourceLine": 127371,
+      "override": false
+    },
+    {
+      "name": "tLt",
+      "sourceLine": 127375,
+      "override": false
+    },
+    {
+      "name": "nLt",
+      "sourceLine": 127380,
+      "override": false
+    },
+    {
+      "name": "m_e",
+      "sourceLine": 127390,
+      "override": false
+    },
+    {
+      "name": "g_e",
+      "sourceLine": 127399,
+      "override": false
+    },
+    {
+      "name": "FF",
+      "sourceLine": 127410,
+      "override": false
+    },
+    {
+      "name": "OU",
+      "sourceLine": 127461,
+      "override": false
+    },
+    {
+      "name": "rLt",
+      "sourceLine": 127462,
+      "override": false
+    },
+    {
+      "name": "sLt",
+      "sourceLine": 127466,
+      "override": false
+    },
+    {
+      "name": "iLt",
+      "sourceLine": 127470,
+      "override": false
+    },
+    {
+      "name": "oLt",
+      "sourceLine": 127470,
+      "override": false
+    },
+    {
+      "name": "Mg",
+      "sourceLine": 127470,
+      "override": false
+    },
+    {
+      "name": "aLt",
+      "sourceLine": 127471,
+      "override": false
+    },
+    {
+      "name": "hLt",
+      "sourceLine": 127707,
+      "override": false
+    },
+    {
+      "name": "mLt",
+      "sourceLine": 127710,
+      "override": false
+    },
+    {
+      "name": "y_e",
+      "sourceLine": 127714,
+      "override": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.codex/
+.agents/
+.env
+.env.*
+runtime.json
+install-request.json
+registration-verification.json
+*.log
+tests/*/
+tests/*.json
+examples/**/.ppt-workbench/
+examples/**/exports/

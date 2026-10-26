@@ -1,0 +1,36 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import TOML from '@iarna/toml';
+import {configure} from '../tools/configure.mjs';
+import {unconfigure} from '../tools/unconfigure.mjs';
+test('user config preserves unrelated settings, uses active override and is idempotent',()=>{
+  const home=fs.mkdtempSync(path.resolve('tests','config-中文-'));
+  const codexHome=path.join(home,'.codex');fs.mkdirSync(codexHome);
+  const original='# existing comment\nmodel = "existing-model"\n[mcp_servers.other]\ncommand = "other-tool"\n';
+  fs.writeFileSync(path.join(codexHome,'config.toml'),original);
+  fs.writeFileSync(path.join(codexHome,'AGENTS.md'),'Original base');
+  fs.writeFileSync(path.join(codexHome,'AGENTS.override.md'),'Original override');
+  const args={runtimeRoot:path.resolve('.'),node:process.execPath,browsers:path.resolve('browser-fixture'),userHome:home,codexHome};
+  const first=configure(args);const next=configure(args);
+  assert.notEqual(first.backupDir,next.backupDir);
+  const raw=fs.readFileSync(path.join(codexHome,'config.toml'),'utf8'),cfg=TOML.parse(raw);
+  assert.equal(cfg.model,'existing-model');assert.equal(cfg.mcp_servers.other.command,'other-tool');assert.ok(raw.includes('# existing comment'));
+  assert.equal(raw.split('# BEGIN PPT-WORKBENCH').length,2);
+  const active=fs.readFileSync(next.instructions,'utf8');assert.equal(active.split('<!-- BEGIN PPT-WORKBENCH -->').length,2);assert.ok(active.startsWith('Original override'));
+  assert.equal(fs.readFileSync(path.join(codexHome,'AGENTS.md'),'utf8'),'Original base');
+  assert.ok(fs.existsSync(path.join(first.skillDest,'runtime.json')));
+  const removed=unconfigure(args);assert.equal(removed.changed,true);
+  const reverted=TOML.parse(fs.readFileSync(path.join(codexHome,'config.toml'),'utf8'));
+  assert.equal(reverted.model,'existing-model');assert.equal(reverted.mcp_servers.other.command,'other-tool');assert.equal(reverted.mcp_servers.ppt_workbench,undefined);
+  assert.ok(!fs.existsSync(first.skillDest));
+  assert.equal(unconfigure(args).changed,false);
+  assert.ok(configure(args).ok);
+});
+test('unmanaged MCP name conflict does not mutate configuration',()=>{
+  const home=fs.mkdtempSync(path.resolve('tests','config-'));const codexHome=path.join(home,'.codex');fs.mkdirSync(codexHome);
+  const content='[mcp_servers.ppt_workbench]\ncommand="existing"\n';const file=path.join(codexHome,'config.toml');fs.writeFileSync(file,content);
+  assert.throws(()=>configure({runtimeRoot:path.resolve('.'),browsers:path.resolve('browser-fixture'),userHome:home,codexHome}),/非本安装器/);
+  assert.equal(fs.readFileSync(file,'utf8'),content);
+});

@@ -1,0 +1,6 @@
+interface:
+  display_name: "PPT Workbench"
+  short_description: "用 Chromium 实测排版并导出原生可编辑 PPT，支持局部改稿和文字诊断"
+  default_prompt: "使用 $ppt-workbench 制作或修改这份 PPT，检查实际排版并导出可编辑文件。"
+policy:
+  allow_implicit_invocation: true
