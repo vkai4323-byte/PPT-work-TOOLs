@@ -7,6 +7,8 @@
 
 ## 元素
 
+0.2.0 可给主要对象附加 data-ppt-id（本页唯一），用于稳定定位；它不影响导出外观。旧页无需一次性迁移，可在需要精准改稿时 deck_identify。具体支持元素与参数见 project-operations.md。
+
 - section：必须提供 background；布局支持 flex/grid/block、方向、gap、对齐、padding。
 - div：卡片与布局容器；带背景/边框的 div 会导出为形状，与子对象分组。
 - h1/h2/h3/p、ul/ol/li：文字；行内支持 b/strong/i/em/u/span/a/br。支持 font-size、font-weight 400/700、font-style、color、line-height、letter-spacing、text-align。最小 20px；正文通常 28–36px，标题通常 60–80px。字号按实际观看场景选择。

@@ -1,6 +1,8 @@
-# PPT Workbench 0.1.0
+# PPT Workbench 0.2.0
 
 把本机 SuperADC 的 HTML deck 测量与原生 PPTX 导出能力接到其他 Windows 电脑上的 Codex。安装包包含实际执行引擎、MCP 工具、用户级 Skill 和安装器；不是只加一段“少看图片”的提示词。
+
+0.2.0 新增源项目快照/恢复、稳定元素定位、灵活项目决定和素材查阅记录。制作方式可以交叉、跳过或回退，不固定为四阶段。详见 [新版说明](docs/VERSION-0.2.md)。
 
 ## 直接交给另一台电脑上的 Codex
 
@@ -16,7 +18,7 @@
 如果需要重启 Codex，请明确告诉我；不要把 MCP 自检成功说成 UI 已完成验收。
 ```
 
-安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.1.0.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
+安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.2.0.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
 
 ```powershell
 git clone https://github.com/vkai4323-byte/PPT-work-TOOLs.git
@@ -63,7 +65,7 @@ $ppt-workbench 请先检查 PPT 环境，然后根据我的文案制作可编辑
 
 ## 安装到哪里
 
-- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.1.0`。
+- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.2.0`。
 - 浏览器：`%LOCALAPPDATA%\PPTWorkbench\browsers`。
 - Skill：`%USERPROFILE%\.agents\skills\ppt-workbench`。
 - 工具注册：`%CODEX_HOME%\config.toml`；未设置 CODEX_HOME 时为 `%USERPROFILE%\.codex\config.toml`。
@@ -89,7 +91,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\uninstall.ps1
 
 ## 如何制作与继续改稿
 
-项目保存为 `super-adc-deck.json` + `slides/*.html` + `assets/`。每页独立源文件，画布 1920×1080。MCP 提供 deck_doctor/init/check/inspect/edit/preview/export 七个工具。
+项目保存为 `super-adc-deck.json` + `slides/*.html` + `assets/`。每页独立源文件，画布 1920×1080。MCP 共 16 个工具，包括基础制作的七个，以及 snapshot/snapshots/restore/context/media/resume/identify/elements/edit_element。
 
 check 在 Chromium 中测量全部页面，返回页码、元素路径和文字诊断；未变化页按源文件、资源、字体、浏览器及引擎指纹复用测量。export 在检查无错误后导出原生文本框、表格、形状、图片，保存新版本并更新 progress.md。错误示例包括文字重叠、超出画布、图片或字体缺失。
 
@@ -103,6 +105,10 @@ preview 生成本地 PNG 与联系表，工具只返回路径。首次设计、�
 ```
 
 批注、文案修改和确认过的设计决定要落到 notes，不能只放在聊天历史。若用户已经手改导出的 PPTX，以最新 PPTX 为事实源，使用 officecli 或其他原文件编辑工具；本引擎不支持无损 PPTX→HTML 反向同步。
+
+新聊天先调用 deck_resume。通过 deck_context 记录当前工作重点、参考资料的用途、已确认项和待办；不必填满所有字段。改稿工具自动快照，直接用终端/文件编辑器修改前需主动调用 deck_snapshot。快照只覆盖清单、slides、assets、notes、progress.md、handoff.md，保留历史导出；恢复前检查变更清单，应用时校验当前内容指纹。完整历史随 .ppt-workbench 一起迁移。
+
+稳定元素通过 data-ppt-id 定位，能在插入或移动其他元素后继续定点修改。deck_media 保存调用方实际查阅后的素材摘要和指纹，避免把旧图片结论用于新图片；它本身不查看图片，也不改变会话上下文。
 
 ## 图片上限与 OfficeCLI
 

@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import JSZip from 'jszip';
 import { Workbench,initProject,replaceText,doctor } from '../src/workbench.mjs';
+import {identifyElements} from '../src/elements.mjs';
 
 const root=fs.mkdtempSync(path.resolve('tests','run-'));
 const bench=new Workbench();
@@ -20,6 +21,7 @@ test('new projects export real editable text, table, shapes, image and SVG',asyn
   put(manifest,'table',frame('table',h('清晰的信息层级')+'<table style="width:1500px;font-size:36px"><tr><th style="padding:24px;background:#243447">阶段</th><th style="padding:24px;background:#243447">交付</th></tr><tr><td style="padding:24px">制作</td><td style="padding:24px">可编辑 PPTX</td></tr></table><x-shape kind="roundRect" style="width:600px;height:150px;background:#197A83;font-size:40px">文字与形状分层</x-shape>'));
   fs.writeFileSync(path.join(path.dirname(manifest),'assets','pixel.png'),Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl6hV8AAAAASUVORK5CYII=','base64'));
   put(manifest,'visual',frame('visual',h('局部修改，逐页检查')+'<div style="display:flex;gap:48px"><svg width="500" height="280" viewBox="0 0 500 280"><rect x="0" y="0" width="160" height="240" fill="#33B7A0"></rect><path d="M200 240 L280 100 L400 170" stroke="#FFCC66" stroke-width="8" fill="none"></path></svg><img src="assets/pixel.png" style="width:300px;height:280px;object-fit:cover"></div>'));
+  for(const id of ['cover','table','visual']) assert.ok(identifyElements(manifest,id).added>0);
   const first=await bench.check(manifest);
   assert.equal(first.ok,true,JSON.stringify(first.issues));assert.equal(first.measuredSlides,3);
   const second=await bench.check(manifest);assert.equal(second.cachedSlides,3);

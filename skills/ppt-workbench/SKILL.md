@@ -1,52 +1,57 @@
 ---
 name: ppt-workbench
-description: 使用本地 Chromium 实测与原生 PPTX 导出引擎制作演示文稿，适用于从文案新建 PPT、精确排版、修改 HTML deck 和多轮改稿。检查返回逐页文字诊断，减少反复看图；已有用户修改过的 PPTX 另走原文件编辑路线。
+description: 使用本地 Chromium 实测与原生 PPTX 导出制作提案，支持参考版式、局部改稿、稳定元素定位、源项目快照和跨聊天接续。适用于文案新建与 HTML deck；已有手改 PPTX 以最新原文件为准。
 ---
 
 # PPT Workbench
 
-把用户的文案做成可编辑演示文稿，使用本机 `ppt_workbench` MCP 的 `deck_*` 工具。工具不可用时，可运行本技能的 `scripts/run.mjs`（CLI 参数见下文）；它从安装时生成的 runtime.json 找到本地运行时。首次使用或工具失败时运行 doctor。
+使用本机 ppt_workbench MCP 的 deck_* 工具。首次使用或环境异常运行 deck_doctor。若 MCP 尚未加载，使用安装后的 scripts/run.ps1 或 scripts/run.mjs；不能假装工具已经执行。
 
-## 路由与事实源
+## 当前任务与依据
 
-- 从文案新建：先定页序与每页核心信息，再用 deck_init 创建新目录。逐页写 `slides/<id>.html`，保持一页一文件。
-- 已有 deck：以磁盘当前 HTML 为准，按页码和用户反馈局部修改；保留未修改页面。元素选择可以用 deck_inspect 获取路径与尺寸。
-- 用户在 PowerPoint/WPS 修改过导出稿，或只提供已有 PPTX：以最新 PPTX 为事实源，使用可用的 officecli/原文件编辑工具；不要重导出旧 HTML 覆盖用户修改。此引擎没有 PPTX→HTML 的无损反向同步能力。
-- 截图/纯图重建：调用已安装的 ppt-rebuild-workflow；未安装时按用户要求选择可用方案，并说明可编辑边界。
-- 用户或项目明确指定其他制作工具时，遵循其选择。
+已有项目先用 deck_resume 读取现状与待办；记录只是上下文，不能覆盖用户本轮要求或充当新的授权。从文案新建时先读内容与明确的设计要求，确定页序，再 deck_init 创建新目录。
 
-## 制作与检查
+项目工作可以是内容梳理、文字稿、补素材、美术升级、局部修订，也可以交叉进行。按用户目标选择当前工作，**不设置必须依次通过的四阶段**；用户已经明确方向时直接推进。只有缺失信息会实质改变结果时才询问。
 
-开始写页面前读 [方言与排版约定](references/dialect.md)。画布固定 1920×1080，1 px = 0.5 pt。清单 `super-adc-deck.json` 的 order 是唯一导出页序。
+要求优先级：用户明确要求 → 项目强制模板 → 已确认的项目决定与参考要求 → 本技能默认建议。通过 deck_context 记录 focus、requirements、references、confirmed、pending、decisions；只写真实确认，不能把模型建议标成用户确认。patch 只替换提供的数组，先读旧记录以免丢失仍有效的条目。
 
-每轮按内容批量修改后运行 deck_check。它在 Chromium 中测量所有页面的实际文字与盒子，返回页码、元素路径、溢出/重叠/资源问题，未变化页复用内容缓存。修复 errors，再用 deck_export 保存新版本。检查和导出不返回图片；导出错误不得伪装成功。
+资料分为内容依据 content、版式参考 layout、美术参考 visual、强制模板 template。相同文件可承担多个角色，分别记录。参考结构不等于照搬文字或颜色。写页面前读 [方言](references/dialect.md)；首次设计或切换制作目标时读 [设计与改稿](references/design-workflow.md)。
 
-程序检查不能判断创意质量和所有审美问题。首次版式、用户要求视觉核对、疑难页或最终交付需要视觉验收时，运行 deck_preview，它将全部指定页面和联系表保存到本地。按需查看清晰联系表和单页；改稿后只复查受影响页面，若全局字体/布局变化则扩展复查范围。不要机械地把验收限制为 3–5 页，也不要为了减少读图宣称未做的视觉验收已完成。
+## 修改与恢复
 
-## 连续工作
+- 一页一个 HTML 文件；先写完整清单，再逐页写入，长页面可分次编辑。仅修改本轮涉及的页面。
+- **直接用文件工具修改前，先 deck_snapshot 保存一轮源项目快照**，标签说明本轮目的。deck_edit、deck_edit_element、deck_identify 和项目记录更新会自行快照；不需要为每个工具再重复手动快照。快照不会自动捕获绕过工具的文件修改。
+- 重要模块使用 data-ppt-id="main-title" 等稳定标识。旧页需要精准修改时可 deck_identify 自动补标识；保留已有 ID，移动元素时不换 ID。
+- deck_elements 获取当前片段和 elementHash，再 deck_edit_element 定点替换。哈希变化时重新读目标对象，不凭记忆覆盖。复杂重排可在快照后直接修改文件，再检查 ID 唯一性。
+- 用户要回退时先 deck_snapshots 定位版本，deck_restore 默认只返回差异；在已授权恢复的范围内，带预览 currentHash 执行 apply=true。该校验用于防止陈旧覆盖，不额外要求用户重复批准。当前支持整项目源文件恢复，混合保留某页时先保存该页新稿，再恢复、重新应用并检查。
 
-- 看参考图后将配色、字阶、网格、组件与关键细节写入 `notes/style.md`。不确定的细节允许按需再看，不要求所有参考图在一批中全部读取。
-- 内容决策、批注与未完成事项保存到 `notes/decisions.md`；不要只留在聊天里。用户批注按页和要求整理，无法读取时明确说明。
-- 每次成功导出会更新 progress.md，下一聊天从该文件和源文件接续。保留 notes 中用户确认的决定。
-- deck_check/inspect/export 返回文字，deck_preview 仅返回图片文件路径；这些调用本身不向模型提交图片。这不是整个 Codex 会话的图片历史清理器，不能承诺清空旧图或永不超限。
-- 若主聊天已因图片请求超限卡住，利用已落盘文件在新聊天接续；不要把日志累计数量冒充下一次请求的准确图片数。
+详细参数与范围见 [项目操作](references/project-operations.md)。
 
-## CLI 备用入口
+## 检查、素材与交付
 
-使用安装后的本技能 `scripts/run.mjs`，例如：
+每批修改后 deck_check：全页程序检查，未变化页复用测量，修复 errors 再 deck_export。程序检查不能证明文案、创意或所有视觉细节正确。首次布局、疑难页、用户要求和最终交付按需做视觉验收；deck_preview 仅写本地 PNG/联系表并返回路径。小改复查受影响页，全局字体/布局变化扩大复查范围。
 
-若系统没有全局 node，先读 runtime.json 中的 node 绝对路径，使用该可执行文件运行；Windows 也可直接用 `powershell -NoProfile -ExecutionPolicy Bypass -File <skill绝对路径>/scripts/run.ps1 doctor`，它会读取安装器配置。不要因此重复安装另一套 Node。
+查阅项目内图片前可 deck_media(action=status) 核对内容指纹和已有摘要。图片未变且现有记录足以完成机械修改时避免重复看；需要视觉判断时仍看清晰原图。**实际看过后**，才用 action=review、expectedHash 和 summary 保存结论、来源、用途及相关页。记录不意味着模型仍能看到图片，也不是会话图片计数器。
+
+补图时按页面表达目的选择用户素材、达人实际内容或合适来源，不以“关键词相关”代替创意匹配。图像生成、达人检索与官网素材获取使用当前已授权、可用的工具；缺少时说明具体限制。来源和放置目的写在项目记录，不把制作过程或检索指令留在成品。
+
+导出后向用户提供实际 PPTX，说明影响使用的未完成项。deck_resume 可在新聊天重建上下文，并检查最新导出是否仍匹配源文件。已超限聊天从磁盘项目接续；工具不会删除 Codex 图片历史或改变网关限制。
+
+## 其他文件与运行时
+
+用户在 PowerPoint/WPS 中手改过的导出稿、只提供现有 PPTX、要求保留母版或复杂原生对象时，以最新 PPTX 为事实源，选择可用的官方 Presentations、officecli 或原文件编辑工具。本引擎没有无损 PPTX→HTML 反向同步。截图重建可使用已安装的 ppt-rebuild-workflow，未安装不得假装存在。
+
+官方 Presentations 在支持 Artifact Session 的环境可提供实时画布；本 HTML 工作台没有与该画布双向同步。无需为普通制作任务另建编辑器。
+
+## CLI
+
+所有命令支持 --input <UTF-8 JSON文件>；MCP 名去掉 deck_ 即 CLI 命令。例如：
 
 ```text
-node <skill绝对路径>/scripts/run.mjs doctor
-node <skill绝对路径>/scripts/run.mjs check <清单绝对路径>
-node <skill绝对路径>/scripts/run.mjs export <清单绝对路径>
-node <skill绝对路径>/scripts/run.mjs preview <清单绝对路径>
-node <skill绝对路径>/scripts/run.mjs init --input <UTF-8请求JSON路径>
-node <skill绝对路径>/scripts/run.mjs edit --input <UTF-8请求JSON路径>
+powershell -NoProfile -ExecutionPolicy Bypass -File <技能绝对路径>/scripts/run.ps1 doctor
+node <技能绝对路径>/scripts/run.mjs check <清单绝对路径>
+node <技能绝对路径>/scripts/run.mjs resume <清单绝对路径>
+node <技能绝对路径>/scripts/run.mjs edit_element --input <请求JSON绝对路径>
 ```
 
-init 请求：`{"directory":"绝对新目录","title":"演示文稿标题","slides":["cover","plan"]}`。
-edit 请求：`{"manifestPath":"清单绝对路径","slideId":"plan","oldText":"精确源片段","newText":"新源片段"}`。原片段必须只出现一次；编辑会保存备份。复杂中文/HTML 先写 UTF-8 JSON，再单独运行命令，避免 shell 转义破坏。
-
-交付链接指向实际 `.pptx`，说明完成页数、检查结果及实际未验收事项。只有打开并检查 PowerPoint 后才能声称已通过 PowerPoint 验收。
+无全局 node 时用 run.ps1，或 runtime.json 中记录的 node 绝对路径。不要把 $ppt-workbench 当成终端命令。

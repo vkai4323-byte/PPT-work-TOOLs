@@ -186,13 +186,14 @@ function u_e(e, t = {}) {
 
 function $Ft() {
   var e = /* @__PURE__ */ new Set(["H1", "H2", "H3", "P", "LI"]), t = ["B", "STRONG", "I", "EM", "U", "SPAN", "A", "BR"], n = new Set(["SECTION", "DIV", "H1", "H2", "H3", "P", "UL", "OL", "LI", "IMG", "TABLE", "THEAD", "TBODY", "TR", "TH", "TD", "X-SHAPE", "X-LINE", "ASIDE"].concat(t)), r = /* @__PURE__ */ new Set(["svg", "path", "rect", "circle", "ellipse", "polygon", "polyline", "g", "defs", "linearGradient", "stop"]), s = /* @__PURE__ */ new Set(["rect", "roundRect", "ellipse", "triangle", "diamond", "chevron", "homePlate", "rightArrow"]), i = /* @__PURE__ */ new Set(["none", "triangle", "stealth", "arrow", "oval", "diamond"]), o = {
-    "*": ["style"],
+    "*": ["style", "data-ppt-id"],
     SECTION: ["id", "style"],
     IMG: ["src", "alt", "style"],
     A: ["href", "style"],
     "X-SHAPE": ["kind", "style"],
     "X-LINE": ["x1", "y1", "x2", "y2", "stroke", "stroke-width", "dash", "start", "end"]
   }, a = /* @__PURE__ */ new Set([
+    "data-ppt-id",
     "viewBox",
     "width",
     "height",
@@ -335,7 +336,7 @@ function $Ft() {
         W.tagName === "path" && /[^MLHVCSQTZAmlhvcsqtza\d\s.,eE+-]/.test(W.getAttribute("d") || "") && m("error", W, "path 的 d 含有无法识别的字符"), W.tagName === "g" && W.getAttribute("transform") && !/^\s*translate\([^)]*\)\s*$/.test(W.getAttribute("transform")) && m("error", W, "g 只允许 translate()"), W.tagName !== "g" && W.tagName !== "svg" && W.getAttribute("transform") && m("error", W, "图形元素不允许 transform，请放到 g 上用 translate");
       } else {
         n.has(W.tagName) || m("error", W, "不允许的元素 <" + W.tagName.toLowerCase() + ">");
-        for (var Se = o[W.tagName] || o["*"], be = 0; be < W.attributes.length; be += 1)
+        for (var Se = (o[W.tagName] || o["*"]).concat(["data-ppt-id"]), be = 0; be < W.attributes.length; be += 1)
           Se.indexOf(W.attributes[be].name) < 0 && m("error", W, "不允许的属性 " + W.attributes[be].name);
         if (W.tagName === "X-SHAPE" && !s.has(W.getAttribute("kind") || "") && m("error", W, "x-shape kind 只允许：" + Array.from(s).join(", ")), W.tagName === "X-LINE" && (["x1", "y1", "x2", "y2"].forEach(function(fe) {
           /^-?[\d.]+$/.test(W.getAttribute(fe) || "") || m("error", W, "x-line 缺少数值 " + fe);

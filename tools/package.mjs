@@ -3,8 +3,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import JSZip from 'jszip';
 const root=path.resolve(import.meta.dirname,'..');
-const output=path.resolve(process.argv[2]||path.join(root,'dist','PPT-Workbench-Codex-0.1.0.zip'));
-const zip=new JSZip(),prefix='PPT-Workbench-Codex-0.1.0/';
+const output=path.resolve(process.argv[2]||path.join(root,'dist','PPT-Workbench-Codex-0.2.0.zip'));
+const zip=new JSZip(),prefix='PPT-Workbench-Codex-0.2.0/';
 const files=[];
 function add(rel) {
   const p=path.join(root,rel),stat=fs.lstatSync(p);

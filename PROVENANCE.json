@@ -2,7 +2,7 @@
   "sourceProduct": "SuperADC",
   "sourceVersion": "0.580.0",
   "sourceBundleSHA256": "ba844e3ab8842a90b7064f9599a3c949494618a5da832e88535589b28d06fd6d",
-  "extractedSHA256": "dcdba67f13b72fdd67b89c7348a6b39a7139d5b814d4546bc5a8f0d83af201f3",
+  "extractedSHA256": "9298692054a663fdd2950ccba221999468cec8f339519046c89257431b9762d1",
   "roots": {
     "Um": "readDeck",
     "p_e": "wrapSlide",
@@ -14,7 +14,8 @@
     "Use pinned jszip instead of bundled copy",
     "Resolve optional font directory under PPT_WORKBENCH_HOME or ~/.ppt-workbench",
     "Replace host measurement outside this vendor file with independent Playwright adapter",
-    "Remove table bodyPr insets/anchor so measured tcPr padding and vertical alignment are honored"
+    "Remove table bodyPr insets/anchor so measured tcPr padding and vertical alignment are honored",
+    "Allow data-ppt-id metadata on HTML/SVG; validate uniqueness and edit through the adapter. No visual output change."
   ],
   "declarations": [
     {

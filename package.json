@@ -1,6 +1,6 @@
 {
   "name": "ppt-workbench",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -15,6 +15,7 @@
     "@iarna/toml": "2.2.5",
     "@modelcontextprotocol/sdk": "1.32.2",
     "jszip": "3.10.1",
+    "parse5": "8.0.1",
     "playwright": "1.58.2",
     "zod": "4.6.7"
   },

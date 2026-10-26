@@ -43,7 +43,7 @@ export function configure({runtimeRoot,node=process.execPath,browsers,userHome=o
   for(const [file,body] of planned) {fs.mkdirSync(path.dirname(file),{recursive:true});const tmp=file+'.ppt-workbench.tmp';fs.writeFileSync(tmp,body,'utf8');fs.renameSync(tmp,file);}
   fs.mkdirSync(path.dirname(skillDest),{recursive:true});
   copyTree(path.join(runtimeRoot,'skills','ppt-workbench'),skillDest);
-  fs.writeFileSync(path.join(skillDest,'.ppt-workbench-managed'),'0.1.0\n');
+  fs.writeFileSync(path.join(skillDest,'.ppt-workbench-managed'),'0.2.0\n');
   fs.writeFileSync(path.join(skillDest,'runtime.json'),JSON.stringify({root:runtimeRoot,node,env:{PLAYWRIGHT_BROWSERS_PATH:browsers}},null,2));
   return {ok:true,configFile,instructions,skillDest,backupDir};
 }

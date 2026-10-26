@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { dispatch,bench } from './dispatch.mjs';
 const [command,first,second]=process.argv.slice(2);
 if(!command||command==='--help') {
-  console.log('PPT Workbench\n  doctor\n  init --input request.json\n  check|export|inspect|preview <absolute manifest path>\n  edit --input request.json\nAny command accepts --input <UTF-8 JSON file>.');
+  console.log('PPT Workbench\n  doctor\n  check|export|preview|resume|snapshots <absolute manifest path>\n  init|inspect|edit|snapshot|restore|context|media|identify|elements|edit_element --input request.json\nAny command accepts --input <UTF-8 JSON file>.');
 } else {
   try {
     const args=first==='--input'?JSON.parse(fs.readFileSync(second,'utf8').replace(/^\uFEFF/,'')):{manifestPath:first};

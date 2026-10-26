@@ -5,8 +5,10 @@ import crypto from 'node:crypto';
 import http from 'node:http';
 import { chromium } from 'playwright';
 import { readDeck, wrapSlide, resolveFont, writePptx, uniqueExportPath } from './vendor/deck-engine.mjs';
+import {projectLock as lock,snapshotUnderLock,projectSourceHash} from './project-state.mjs';
+import {validateElements} from './elements.mjs';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.2.0';
 const MANIFEST = 'super-adc-deck.json';
 const ID = /^[A-Za-z0-9_-]{1,64}$/;
 const sha = data => crypto.createHash('sha256').update(data).digest('hex');
@@ -61,16 +63,10 @@ function load(manifestPath) {
   for(const slide of deck.slides) {
     if(Buffer.byteLength(slide.source)>512*1024) throw new Error('单页 HTML 超过 512 KiB。');
     validateSource(slide.source);
+    validateElements(slide.source);
   }
   const fingerprint=sha(json({manifest:raw,slides:deck.slides.map(s=>[s.id,sha(s.source)]),assets:assetsDigest(root)}));
   return {...deck,root,file,fingerprint};
-}
-function lock(root) {
-  const file=path.join(root,'.ppt-workbench','write.lock');
-  fs.mkdirSync(path.dirname(file),{recursive:true});
-  try { fs.writeFileSync(file,json({pid:process.pid,createdAt:new Date().toISOString()}),{flag:'wx'}); }
-  catch(e) { if(e.code==='EEXIST') throw new Error('此 deck 正在被另一个操作修改；若进程已经退出，请检查 .ppt-workbench/write.lock。'); throw e; }
-  return ()=>fs.unlinkSync(file);
 }
 function fontData(deck) {
   const font=resolveFont(deck.manifest);
@@ -171,7 +167,8 @@ export class Workbench {
               fixAnchors(scene?.items);
               const diagnostics=[...api.diagnostics];
               for(const img of document.images) if(!img.naturalWidth) diagnostics.push({level:'error',path:api.pathOf(img),message:'图片加载失败：'+img.getAttribute('src')});
-              return {scene,diagnostics,loadedFonts:api.loadedFonts()};
+              const elementRefs=[...document.querySelectorAll('[data-ppt-id]')].map(el=>({elementId:el.getAttribute('data-ppt-id'),path:api.pathOf(el)}));
+              return {scene,diagnostics,loadedFonts:api.loadedFonts(),elementRefs};
             });
             if(result.scene?.id!==slide.id) result.diagnostics.push({level:'error',path:'section',message:'section id 必须与页面文件名一致。'});
             if(!result.loadedFonts.some(f=>f.startsWith(font.family+' '))) result.diagnostics.push({level:'error',path:'section',message:'目标字体未成功加载：'+font.family+'。请安装该字体或明确修改清单 fonts。'});
@@ -209,7 +206,7 @@ export class Workbench {
       fs.mkdirSync(path.join(root,'exports'),{recursive:true});
       const file=uniqueExportPath(root,deck.manifest.title);
       fs.writeFileSync(file,output.buffer,{flag:'wx'});
-      const result={...report,exported:true,path:file,bytes:output.buffer.length,exportWarnings:output.warnings};
+      const result={...report,exported:true,path:file,bytes:output.buffer.length,exportWarnings:output.warnings,contentHash:projectSourceHash(root)};
       atomic(path.join(root,'.ppt-workbench','latest-export.json'),json(result));
       atomic(path.join(root,'progress.md'),`# ${deck.manifest.title}\n\n最新导出：${file}\n源文件摘要：${deck.fingerprint}\n页数：${deck.manifest.order.length}\n程序检查：${report.errors} 错误，${report.warnings} 警告\n\n编辑源：${deck.file}\n当前版本已完成全页程序检查；审美与 PowerPoint 实际渲染须按交付要求验收。\n导出的 PPTX 外部修改不会自动同步回 HTML。用户外部改稿时，以其最新 PPTX 为编辑源。\n`);
       return result;
@@ -219,7 +216,7 @@ export class Workbench {
     const {deck,measured,report}=await this.measure(manifestPath,{selectedIds:slideId?[slideId]:null});
     if(slideId&&!deck.manifest.order.includes(slideId)) throw new Error('页面不存在。');
     const flatten=(items,out=[])=>{for(const i of items){out.push({type:i.type,path:i.path,box:i.box,text:i.text?.paragraphs?.map(p=>p.lines.map(l=>l.runs.map(r=>r.text).join('')).join('')).join('\n')});if(i.items) flatten(i.items,out);}return out;};
-    return {...report,pages:measured.map(m=>({id:m.id,elements:flatten(m.scene?.items||[])}))};
+    return {...report,pages:measured.map(m=>({id:m.id,elementRefs:m.elementRefs||[],elements:flatten(m.scene?.items||[]).map(e=>({...e,elementId:m.elementRefs?.find(r=>r.path===e.path)?.elementId}))}))};
   }
   async preview(manifestPath,slideIds) {
     const deck=load(manifestPath);
@@ -259,12 +256,13 @@ export function replaceText(manifestPath,slideId,oldText,newText) {
   try {
     const current=fs.readFileSync(file,'utf8');
     if(current.split(oldText).length!==2) throw new Error('原文需精确匹配一次；请读取当前页面，避免改错对象。');
-    const next=current.replace(oldText,newText);validateSource(next);
+    const next=current.replace(oldText,newText);validateSource(next);validateElements(next);
+    const snapshot=snapshotUnderLock(deck.root,'修改 '+slideId+' 前');
     const dir=path.join(deck.root,'.ppt-workbench','history');
     fs.mkdirSync(dir,{recursive:true});
     const backup=path.join(dir,`${Date.now()}-${crypto.randomUUID()}-${slideId}.html`);
     fs.writeFileSync(backup,current,{flag:'wx'});atomic(file,next);
-    return {ok:true,slide:slideId,backup,needsCheck:true};
+    return {ok:true,slide:slideId,backup,snapshotId:snapshot.id,needsCheck:true};
   } finally {unlock();}
 }
 export async function doctor() {

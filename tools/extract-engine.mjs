@@ -56,11 +56,16 @@ let code = '// Derived from the user-installed SuperADC 0.580.0. See PROVENANCE.
 const tableBody='${NM({ ...c.text, insets: { l: 0, t: 0, r: 0, b: 0 } }, t.mode, "a:txBody")}';
 if(code.split(tableBody).length!==2) throw new Error('Table patch target changed');
 code=code.replace(tableBody,'${NM({ ...c.text, insets: { l: 0, t: 0, r: 0, b: 0 } }, t.mode, "a:txBody").replace(/ (?:lIns|rIns|tIns|bIns|anchor)="[^"]*"/g, "")}');
+code=code.replace('"*": ["style"]','"*": ["style", "data-ppt-id"]').replace('"viewBox",','"data-ppt-id",\n    "viewBox",');
+const metadataTarget='var Se = o[W.tagName] || o["*"], be = 0';
+if(code.split(metadataTarget).length!==2)throw new Error('Metadata patch target changed');
+code=code.replace(metadataTarget,'var Se = (o[W.tagName] || o["*"]).concat(["data-ppt-id"]), be = 0');
 fs.writeFileSync(path.join(root,'src/vendor/deck-engine.mjs'),code);
 const provenance = {
   sourceProduct:'SuperADC', sourceVersion:'0.580.0', sourceBundleSHA256:crypto.createHash('sha256').update(source).digest('hex'),
   extractedSHA256:crypto.createHash('sha256').update(code).digest('hex'),
   roots, modifications:['Use pinned jszip instead of bundled copy','Resolve optional font directory under PPT_WORKBENCH_HOME or ~/.ppt-workbench','Replace host measurement outside this vendor file with independent Playwright adapter','Remove table bodyPr insets/anchor so measured tcPr padding and vertical alignment are honored'],
+  stableElementMetadata:'Allow data-ppt-id metadata on HTML/SVG; uniqueness and edits validated by adapter',
   declarations:entries.map(e=>({name:e.name,sourceLine:e.path?.node.loc.start.line ?? null,override:!!e.override})),
 };
 fs.writeFileSync(path.join(root,'PROVENANCE.json'),JSON.stringify(provenance,null,2)+'\n');

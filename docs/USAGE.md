@@ -35,7 +35,7 @@ $ppt-workbench 根据这份 PPTX 的批注修改。
 
 本工作台不包含 PPTX 批注导入与无损反向同步。读取批注、编辑既有 PPTX 可以配合 officecli 或当前环境提供的文档工具；工具缺失时应说明具体缺少什么，不能假装已经完成读取或保留修改。
 
-## 七个工具的分工
+## 基础工具的分工
 
 | 工具 | 用途 |
 | --- | --- |
@@ -46,6 +46,10 @@ $ppt-workbench 根据这份 PPTX 的批注修改。
 | deck_edit | 精确替换某页源片段并备份 |
 | deck_preview | 生成本地单页 PNG 和联系表，返回路径 |
 | deck_export | 检查后导出新 PPTX 并更新 progress.md |
+
+0.2.0 还提供九个项目工具：deck_snapshot/snapshots/restore（快照恢复）、deck_identify/elements/edit_element（稳定定位）、deck_context（灵活项目记录）、deck_media（素材查阅记录）、deck_resume（新聊天接续）。具体参数见 [项目操作](../skills/ppt-workbench/references/project-operations.md)。
+
+工作顺序由项目决定，可以先套模板、先补关键图、反复回头改文案；这些工具不强制阶段门禁。已有用户确认的内容应按本轮目标保留，用户改变要求时同步更新记录。
 
 检查能发现部分结构问题，无法决定文案是否有说服力、创意是否准确或全部视觉细节是否合适。程序通过后仍需根据任务进行视觉验收。
 
