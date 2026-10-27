@@ -8,7 +8,7 @@ import { readDeck, wrapSlide, resolveFont, writePptx, uniqueExportPath } from '.
 import {projectLock as lock,snapshotUnderLock,projectSourceHash} from './project-state.mjs';
 import {validateElements} from './elements.mjs';
 
-export const VERSION = '0.2.0';
+export const VERSION = JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
 const MANIFEST = 'super-adc-deck.json';
 const ID = /^[A-Za-z0-9_-]{1,64}$/;
 const sha = data => crypto.createHash('sha256').update(data).digest('hex');

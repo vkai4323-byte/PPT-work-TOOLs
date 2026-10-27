@@ -30,7 +30,7 @@ export function configure({runtimeRoot,node=process.execPath,browsers,userHome=o
   const before=fs.existsSync(instructions)?fs.readFileSync(instructions,'utf8'):'';
   const marker=/<!-- BEGIN PPT-WORKBENCH -->[\s\S]*?<!-- END PPT-WORKBENCH -->\r?\n?/g;
   const rules=`<!-- BEGIN PPT-WORKBENCH -->
-当用户要求新建 PPT、精确排版或继续修改 HTML deck 时，优先使用用户级 ppt-workbench 技能及 ppt_workbench 的 deck_* 工具（若可用）；用户或项目明确指定其他工具时按其要求。已有用户修改过的 PPTX 以最新文件为准，不能重导出旧 HTML 覆盖修改。该工具使用 Chromium 全页测量、文字诊断和原生导出，预览只返回本地路径。不要把未做的视觉验收声称为通过，也不要把工具内的零图片输出当成整个会话没有历史图片。若工具不可用，读取该技能的 CLI 备用入口；不能跳过检查伪装成功。
+当用户要求新建或修改 PPT 时，优先使用用户级 ppt-workbench 技能（若可用）；用户或项目明确指定其他工具时按其要求。新建/继续 HTML deck 使用 deck_*；已有或用户手改 PPTX 以已保存最新版为准，用 pptx_* 接管、创建修改副本、检查差异并保存版本，不能重导出旧 HTML 覆盖修改。批注选区可作定位锚点，明确的整页/全稿要求决定修改范围。OfficeCLI 是外部编辑依赖，缺失时不能假称已安装。预览只返回本地路径，不把未做的视觉验收声称通过，不把零图片工具输出当成清除会话历史。MCP 不可用时读取技能 CLI 备用入口。
 <!-- END PPT-WORKBENCH -->\n`;
   const skillDest=path.join(userHome,'.agents','skills','ppt-workbench');
   if(fs.existsSync(skillDest)&&!fs.existsSync(path.join(skillDest,'.ppt-workbench-managed'))) throw new Error('同名技能目录已存在且非本安装器管理；为避免覆盖，请先核对。');
@@ -43,7 +43,7 @@ export function configure({runtimeRoot,node=process.execPath,browsers,userHome=o
   for(const [file,body] of planned) {fs.mkdirSync(path.dirname(file),{recursive:true});const tmp=file+'.ppt-workbench.tmp';fs.writeFileSync(tmp,body,'utf8');fs.renameSync(tmp,file);}
   fs.mkdirSync(path.dirname(skillDest),{recursive:true});
   copyTree(path.join(runtimeRoot,'skills','ppt-workbench'),skillDest);
-  fs.writeFileSync(path.join(skillDest,'.ppt-workbench-managed'),'0.2.0\n');
+  fs.writeFileSync(path.join(skillDest,'.ppt-workbench-managed'),'0.3.0\n');
   fs.writeFileSync(path.join(skillDest,'runtime.json'),JSON.stringify({root:runtimeRoot,node,env:{PLAYWRIGHT_BROWSERS_PATH:browsers}},null,2));
   return {ok:true,configFile,instructions,skillDest,backupDir};
 }

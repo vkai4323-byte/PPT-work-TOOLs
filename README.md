@@ -1,8 +1,8 @@
-# PPT Workbench 0.2.0
+# PPT Workbench 0.3.0
 
 把本机 SuperADC 的 HTML deck 测量与原生 PPTX 导出能力接到其他 Windows 电脑上的 Codex。安装包包含实际执行引擎、MCP 工具、用户级 Skill 和安装器；不是只加一段“少看图片”的提示词。
 
-0.2.0 新增源项目快照/恢复、稳定元素定位、灵活项目决定和素材查阅记录。制作方式可以交叉、跳过或回退，不固定为四阶段。详见 [新版说明](docs/VERSION-0.2.md)。
+0.3.0 补齐原生 PPTX 接管、按批注范围修改、OfficeCLI 批处理、差异检查与版本交付，并加入两条路线共用的素材布图计划。保留 0.2 的 deck 快照与稳定元素能力。制作方式可交叉、跳过或回退，不固定四阶段。详见 [新版说明](docs/VERSION-0.3.md)。
 
 ## 直接交给另一台电脑上的 Codex
 
@@ -18,7 +18,7 @@
 如果需要重启 Codex，请明确告诉我；不要把 MCP 自检成功说成 UI 已完成验收。
 ```
 
-安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.2.0.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
+安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.3.0.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
 
 ```powershell
 git clone https://github.com/vkai4323-byte/PPT-work-TOOLs.git
@@ -41,7 +41,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 | 按需预览 | 把预览图与联系表保存到本地，工具返回路径，按需开展视觉验收 |
 | 跨聊天继续 | 通过项目源文件、notes 和 progress.md 接续工作 |
 
-适合新建提案和持续修改 HTML deck。已有用户手改 PPTX、截图重建和图片生成分别需要相应编辑/重建/出图工具；本包不自动附带这些外部能力。
+支持新建 HTML deck，以及已有/用户手改 PPTX 的接管与精修。原生 PPTX 的读取、快照、范围计划和差异检查已内置；实际修改主用另行安装的 OfficeCLI，也可配合合适的原文件编辑工具。截图重建、图片生成与达人检索仍需相应外部工具。
 
 ## 在另一台电脑安装
 
@@ -65,7 +65,7 @@ $ppt-workbench 请先检查 PPT 环境，然后根据我的文案制作可编辑
 
 ## 安装到哪里
 
-- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.2.0`。
+- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.3.0`。
 - 浏览器：`%LOCALAPPDATA%\PPTWorkbench\browsers`。
 - Skill：`%USERPROFILE%\.agents\skills\ppt-workbench`。
 - 工具注册：`%CODEX_HOME%\config.toml`；未设置 CODEX_HOME 时为 `%USERPROFILE%\.codex\config.toml`。
@@ -91,7 +91,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\uninstall.ps1
 
 ## 如何制作与继续改稿
 
-项目保存为 `super-adc-deck.json` + `slides/*.html` + `assets/`。每页独立源文件，画布 1920×1080。MCP 共 16 个工具，包括基础制作的七个，以及 snapshot/snapshots/restore/context/media/resume/identify/elements/edit_element。
+deck 项目保存为 `super-adc-deck.json` + `slides/*.html` + `assets/`；原生项目保存为 `ppt-workbench-native.json` + `versions/` + `work/` + `plans/`。MCP 共 25 个工具：原有16个 deck 工具、7个 pptx_* 工具，以及 ppt_asset/ppt_placement_plan。原生稿保持原始页面尺寸，不转换为1920×1080。
 
 check 在 Chromium 中测量全部页面，返回页码、元素路径和文字诊断；未变化页按源文件、资源、字体、浏览器及引擎指纹复用测量。export 在检查无错误后导出原生文本框、表格、形状、图片，保存新版本并更新 progress.md。错误示例包括文字重叠、超出画布、图片或字体缺失。
 
@@ -118,7 +118,7 @@ preview 生成本地 PNG 与联系表，工具只返回路径。首次设计、�
 
 officecli 适合读写已有 Office 文件、查询对象、做定点修改；它不是请求历史过滤器，也不等同于 SuperADC 的 Chromium 测量与导出引擎。两者可配合。`ppt-rebuild-workflow` 适合截图/纯图重建与增量模式选择，单独复制 Skill 同样不会获得宿主服务。
 
-本包主力覆盖“从文案制作、精确排版、多轮改 HTML deck”。不捆绑 OfficeCLI、图片生成账号或完整重建技能；已有工具可继续使用，缺少时不能假装这些功能已安装。
+本包覆盖新建 deck 与原生 PPTX 精修的项目管理和检查流程。不捆绑 OfficeCLI 二进制、图片生成账号或完整重建技能；已有工具可继续使用，缺少时不能假装这些功能已安装。
 
 ## 边界与来源
 

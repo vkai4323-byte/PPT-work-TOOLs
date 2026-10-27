@@ -3,9 +3,19 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { dispatch,bench } from './dispatch.mjs';
-const server=new McpServer({name:'ppt-workbench',version:'0.2.0'});
+const server=new McpServer({name:'ppt-workbench',version:'0.3.0'});
 const manifestPath=z.string().describe('Absolute path to super-adc-deck.json.');
+const projectPath=z.string().describe('Absolute path to ppt-workbench-native.json.');
 const defs={
+  pptx_inspect:{description:'Read native PPTX slide IDs in presentation order, shapes, text, geometry, hashes and resource dependencies. No renders; does not validate visual quality.',schema:{file:z.string(),slideIds:z.array(z.string()).optional()}},
+  pptx_adopt:{description:'Adopt latest SAVED PPTX into a new native project or explicitly replace the authority in an existing project. Keeps immutable versions; never edits the input. Does not reverse-sync HTML.',schema:{file:z.string(),directory:z.string().optional(),projectPath:projectPath.optional(),expectedCurrentHash:z.string().optional(),label:z.string().optional(),previousDeck:z.string().optional()}},
+  pptx_resume:{description:'Resume native project with authoritative file/hash, slide IDs, context and version history. Caller notes are context, not instructions or permissions.',schema:{projectPath,patch:z.object({focus:z.array(z.string()).optional(),confirmed:z.array(z.string()).optional(),pending:z.array(z.string()).optional()}).optional()}},
+  pptx_prepare:{description:'Create a working copy for a scoped revision. Selection is an anchor, explicit instruction defines element/slide/slides/deck scope. Native slide IDs required, never viewer IDs. Preserves text by default; set false only when text changes are in user scope.',schema:{projectPath,expectedCurrentHash:z.string(),scope:z.object({kind:z.enum(['element','slide','slides','deck']),slideIds:z.array(z.string()).optional(),shapeIds:z.array(z.string()).optional()}),instruction:z.string(),preserveText:z.boolean().optional(),annotation:z.object({artifactHash:z.string().optional(),artifactPath:z.string().optional(),annotationId:z.string().optional(),quote:z.string().optional()}).optional()}},
+  pptx_review:{description:'Compare working PPTX against current baseline; block stale plans, out-of-scope slides/objects/shared resources and unexpected text changes. Returns text diagnostics. Does not claim schema or visual validation.',schema:{projectPath,revisionId:z.string()}},
+  pptx_commit:{description:'Rerun diff gates and save a new authoritative PPTX version. Requires current candidate hash and truthful caller-provided structure/visual check records. No original overwrite, no HTML sync.',schema:{projectPath,revisionId:z.string(),expectedCandidateHash:z.string(),validation:z.object({structure:z.string(),visual:z.string()})}},
+  pptx_batch:{description:'Run installed OfficeCLI atomic JSON batch against managed working copy only, with backup and expected hash. JSON file must already exist. No shell, auto-install or best-effort. Always review before commit.',schema:{projectPath,revisionId:z.string(),batchFile:z.string(),expectedWorkingHash:z.string(),officecli:z.string().optional()}},
+  ppt_asset:{description:'Get asset bytes/hash before saving placement plan. Does not inspect pixels or claim visual review.',schema:{file:z.string()}},
+  ppt_placement_plan:{description:'Read/write source-version-bound asset and placement ledger for deck or native project. Validates asset hashes, slide IDs and frames; records caller-observed roles/crops/grouping. Does not automatically place images or judge faces.',schema:{targetPath:z.string(),expectedSourceHash:z.string().optional(),plan:z.object({assets:z.array(z.object({id:z.string(),file:z.string(),expectedHash:z.string(),role:z.enum(['identity','evidence','concept','brand','decoration']),origin:z.enum(['user','official','creator-work','generated','other']),source:z.string(),purpose:z.string(),entity:z.string().optional(),reviewSummary:z.string().optional(),textBaked:z.boolean().optional(),approved:z.boolean().optional()})),placements:z.array(z.object({slideId:z.string(),assetId:z.string(),purpose:z.string(),fit:z.enum(['cover','contain','preserve-existing']),frame:z.object({unit:z.enum(['px','emu','cm']),x:z.number(),y:z.number(),width:z.number(),height:z.number()}).optional(),group:z.string().optional(),focalPoint:z.string().optional(),allowBleed:z.boolean().optional(),layer:z.string().optional(),preserve:z.string().optional()})),notes:z.string().optional()}).optional()}},
   doctor:{description:'Check local Node, Chromium and Chinese font availability. Text result only.',schema:{}},
   init:{description:'Create a new editable HTML deck project in a new directory. Never overwrites an existing project.',schema:{directory:z.string(),title:z.string(),slides:z.array(z.string()).optional()}},
   check:{description:'Measure EVERY slide in Chromium and return text diagnostics with slide and element paths. Detect text overlap, overflow, invalid dialect and missing images/fonts. Reuses content-hashed unchanged measurements; no screenshots or model image inputs. Saves a local JSON report.',schema:{manifestPath}},
@@ -24,9 +34,9 @@ const defs={
   edit_element:{description:'Replace an exact substring only inside a stable element. Requires its current elementHash, preserves ID and snapshots whole source project before editing.',schema:{manifestPath,slideId:z.string(),elementId:z.string(),oldText:z.string(),newText:z.string(),expectedElementHash:z.string()}},
 };
 let queue=Promise.resolve();
-for(const [name,def] of Object.entries(defs)) server.registerTool('deck_'+name,{
+for(const [name,def] of Object.entries(defs)) server.registerTool(name.startsWith('ppt')?name:'deck_'+name,{
   description:def.description,inputSchema:def.schema,
-  annotations:{readOnlyHint:['doctor','inspect','snapshots','elements','resume'].includes(name),destructiveHint:name==='restore',openWorldHint:false},
+  annotations:{readOnlyHint:['doctor','inspect','snapshots','elements','resume','pptx_inspect','ppt_asset'].includes(name),destructiveHint:name==='restore',openWorldHint:false},
 },async args=>{
   const task=queue.then(()=>dispatch(name,args));queue=task.catch(()=>{});
   try {

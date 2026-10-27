@@ -9,7 +9,7 @@ test('fresh MCP connection discovers tools and creates/checks/exports a project'
   const transport=new StdioClientTransport({command:process.execPath,args:[path.resolve('src/mcp.mjs')],stderr:'pipe'});
   await client.connect(transport);
   try {
-    const tools=await client.listTools();assert.equal(tools.tools.length,16);
+    const tools=await client.listTools();assert.equal(tools.tools.length,25);assert.ok(tools.tools.some(t=>t.name==='pptx_adopt'));assert.ok(tools.tools.some(t=>t.name==='ppt_placement_plan'));
     const tmp=fs.mkdtempSync(path.resolve('tests','mcp-'));
     const init=await client.callTool({name:'deck_init',arguments:{directory:path.join(tmp,'fresh.deck'),title:'全新会话测试'}});
     const {manifestPath}=JSON.parse(init.content[0].text);
