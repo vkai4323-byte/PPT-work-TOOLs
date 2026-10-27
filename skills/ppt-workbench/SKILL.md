@@ -15,7 +15,7 @@ description: 制作和多轮精修提案 PPT：新建使用 HTML deck 实测导�
 
 要求优先级：用户明确要求 → 项目强制模板 → 已确认的项目决定与参考要求 → 本技能默认建议。通过 deck_context 记录 focus、requirements、references、confirmed、pending、decisions；只写真实确认，不能把模型建议标成用户确认。patch 只替换提供的数组，先读旧记录以免丢失仍有效的条目。
 
-资料分为内容依据 content、版式参考 layout、美术参考 visual、强制模板 template。相同文件可承担多个角色，分别记录。参考结构不等于照搬文字或颜色。写页面前读 [方言](references/dialect.md)；首次设计或切换制作目标时读 [设计与改稿](references/design-workflow.md)。
+资料分为内容依据 content、版式参考 layout、美术参考 visual、强制模板 template。相同文件可承担多个角色，分别记录。参考结构不等于照搬文字或颜色。写 HTML 页面前读 [方言](references/dialect.md)。两条路线首次设计、整页重排或美术升级时都读 [设计与改稿](references/design-workflow.md)：逐页确定视觉重点和主辅区域，选择适合阅读用途的字阶、色面、留白与版式，检查整组节奏。机械小改保留现有设计，不为应用默认规则扩大修改范围。
 
 ## 修改与恢复
 

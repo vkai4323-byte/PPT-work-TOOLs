@@ -6,6 +6,8 @@
 
 **给不懂技术的使用者：** 下载 [新手教学 HTML](https://github.com/vkai4323-byte/PPT-work-TOOLs/raw/refs/heads/main/docs/beginner-guide.html) 后，用浏览器打开。按7种工作情况查看能做什么、如何提要求、Agent 会怎样操作；支持复制话术，可离线阅读。安装包内也有 `docs/beginner-guide.html`。
 
+新建与已有 PPTX 共用 [设计规则](skills/ppt-workbench/references/design-workflow.md)：明确视觉重点、字阶、色块、主辅比例、留白与页面节奏。默认建议服从客户模板和用户要求，不把所有页面强制改成大字或三卡片。
+
 ## 直接交给另一台电脑上的 Codex
 
 复制下面这段话即可：

@@ -76,8 +76,8 @@
   },
   {
     "path": "skills/ppt-workbench/SKILL.md",
-    "bytes": 6829,
-    "sha256": "70d3f3a9105c4021621f6baa06ec93322932073aac125b41d8ea202e2880a5f9"
+    "bytes": 7063,
+    "sha256": "9618f88768a1766a916a73d6442b05a24427995499af71757be2d4c03a3e9bd0"
   },
   {
     "path": "skills/ppt-workbench/agents/openai.yaml",
@@ -91,8 +91,8 @@
   },
   {
     "path": "skills/ppt-workbench/references/design-workflow.md",
-    "bytes": 3273,
-    "sha256": "beed3be0aa032f14020cfa4059e3344ba3d9d5c481345395ba5c4a110dc3dc6f"
+    "bytes": 11102,
+    "sha256": "1959e3662ed36aeec8393cf7fb5d4fe3654817b795755c8abb3753103a2e96e3"
   },
   {
     "path": "skills/ppt-workbench/references/dialect.md",
@@ -101,8 +101,8 @@
   },
   {
     "path": "skills/ppt-workbench/references/native-pptx-workflow.md",
-    "bytes": 6451,
-    "sha256": "df419c98faf412314ecf697153d75d3ae28985d69deca98d78295dcea18092af"
+    "bytes": 6859,
+    "sha256": "e72007fe8e8c70d578a6df49007b0ea11bee2bb129d54eed89d5f78a108b7523"
   },
   {
     "path": "skills/ppt-workbench/references/project-operations.md",
@@ -111,8 +111,8 @@
   },
   {
     "path": "skills/ppt-workbench/references/review-and-annotations.md",
-    "bytes": 4347,
-    "sha256": "0cd35368ab656e3c543d9143045a2a6c81df5cc7f692d8da51be035d9a345a75"
+    "bytes": 4696,
+    "sha256": "8c557ff687b2a3e05b046d3fe69c08420a9487eeb727ae067f74dacb30b0eb40"
   },
   {
     "path": "skills/ppt-workbench/scripts/run.mjs",
@@ -186,8 +186,8 @@
   },
   {
     "path": "docs/VERSION-0.3.md",
-    "bytes": 2192,
-    "sha256": "8cd9e1c99b083c28ca4309572533e984222aefd8b4fc4502a4906cd6964728a2"
+    "bytes": 2902,
+    "sha256": "b8202d82f91e22479f7be7ce387c5e713fdcabb9e972cef95b1ea2e6e4c933c4"
   },
   {
     "path": "docs/beginner-guide.html",
@@ -221,8 +221,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 11003,
-    "sha256": "6c12e55e6462de1070abc25d5d8bded986280467b914530c28c950461f0216f1"
+    "bytes": 11281,
+    "sha256": "0e79880c99680b7b21e812ab800d8c0511bd49be6f3e4d29280f5ccefc81f5b6"
   },
   {
     "path": "验收说明.md",
