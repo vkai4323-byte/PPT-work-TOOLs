@@ -2,6 +2,8 @@
 
 `$ppt-workbench` 是在 Codex 聊天中调用技能的写法。先完整安装，再使用这些提示词。
 
+不熟悉技术的使用者可先用浏览器打开同目录 [新手教学 HTML](beginner-guide.html)，按当前工作情况选择示例。
+
 0.3 新增原生 PPTX 精修，完整流程见 [原生精修](../skills/ppt-workbench/references/native-pptx-workflow.md)，布图见 [素材与布图](../skills/ppt-workbench/references/asset-placement.md)。例如：
 
 ```text
