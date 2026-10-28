@@ -1,6 +1,6 @@
 param([string]$InstallRoot = (Join-Path $env:LOCALAPPDATA 'PPTWorkbench'))
 $ErrorActionPreference='Stop'
-$runtimeRoot=Join-Path $InstallRoot '0.3.0'
+$runtimeRoot=Join-Path $InstallRoot '0.3.1'
 $requestFile=Join-Path $runtimeRoot 'install-request.json'
 $request=Get-Content -LiteralPath $requestFile -Raw -Encoding UTF8 | ConvertFrom-Json
 & $request.node (Join-Path $runtimeRoot 'tools\unconfigure.mjs') $requestFile

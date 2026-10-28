@@ -7,7 +7,7 @@
 )
 $ErrorActionPreference = 'Stop'
 $sourceRoot = $PSScriptRoot
-$runtimeRoot = Join-Path ([IO.Path]::GetFullPath($InstallRoot)) '0.3.0'
+$runtimeRoot = Join-Path ([IO.Path]::GetFullPath($InstallRoot)) '0.3.1'
 $InstallRoot = [IO.Path]::GetFullPath($InstallRoot)
 $browserRoot = if ($BrowserCache) { [IO.Path]::GetFullPath($BrowserCache) } else { Join-Path $InstallRoot 'browsers' }
 if (-not [Environment]::Is64BitOperatingSystem) { throw 'This package requires Windows x64.' }

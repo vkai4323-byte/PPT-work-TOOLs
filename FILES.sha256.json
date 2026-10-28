@@ -16,18 +16,23 @@
   },
   {
     "path": "src/mcp.mjs",
-    "bytes": 10359,
-    "sha256": "18fb482602780d389b62c24f1699a8114ae4ba5dd976503eb14783f232593fce"
+    "bytes": 11320,
+    "sha256": "6a5242ddf64b7de7dab21ad148076ebd0a50950cb2bdc83d7b9aa982a1248557"
   },
   {
     "path": "src/native-pptx.mjs",
-    "bytes": 18910,
-    "sha256": "83200f7068315e25d3c4aa05a307f110eb2bfde517c482c3ba8b36230dbb1e7e"
+    "bytes": 19390,
+    "sha256": "0f62cc6b118d7aab7163c9905d03f9eba24b9a2371f6a5158d91245b0f608646"
   },
   {
     "path": "src/placement-plan.mjs",
-    "bytes": 3682,
-    "sha256": "ad94c534070353bfd8bed69d80f9ce49e50fff3c863e38404b7755b6ccf62a04"
+    "bytes": 3910,
+    "sha256": "30bc4dabf59243ebe3b0ab16041e7c38583cee37b934101ea734b5e2600676aa"
+  },
+  {
+    "path": "src/placement-progress.mjs",
+    "bytes": 3139,
+    "sha256": "c06b9b83d3cf1c5abf11048acd7f1a478e0dfa5538c65e1a642eacb32459164c"
   },
   {
     "path": "src/project-state.mjs",
@@ -47,7 +52,7 @@
   {
     "path": "tools/configure.mjs",
     "bytes": 4800,
-    "sha256": "b7a28ab79564d65ec773fcee17ca4bbf653b401b1c9317ba05c7d0081b35a032"
+    "sha256": "608682fb35688e63eda7046e7ea31ab9c50a920e86ed306e94bf036c358e83f2"
   },
   {
     "path": "tools/extract-engine.mjs",
@@ -57,7 +62,7 @@
   {
     "path": "tools/package.mjs",
     "bytes": 2258,
-    "sha256": "e9f13ec00053a5733d4a7667890b42df276d78c40c067e0efd60fb55824d3a61"
+    "sha256": "25088ce74df106b097b900cf4dea4bf583e12094dc7735e84c5e828acbb05aa5"
   },
   {
     "path": "tools/smoke.mjs",
@@ -76,8 +81,8 @@
   },
   {
     "path": "skills/ppt-workbench/SKILL.md",
-    "bytes": 7063,
-    "sha256": "9618f88768a1766a916a73d6442b05a24427995499af71757be2d4c03a3e9bd0"
+    "bytes": 7281,
+    "sha256": "7c785d950e79d1bc16469acd9409cbf3cf4ffa40d9073a4b6fe2ba0f26bb51b1"
   },
   {
     "path": "skills/ppt-workbench/agents/openai.yaml",
@@ -86,8 +91,13 @@
   },
   {
     "path": "skills/ppt-workbench/references/asset-placement.md",
-    "bytes": 4712,
-    "sha256": "9712407cd98550be27f33c8c52fced3bf8b614f5d814b6e1d0ceeef523fbbed0"
+    "bytes": 7075,
+    "sha256": "0f853f5ca2357a5922071fe43c04ab7cb45968a68ba760f06de2974db8f8445f"
+  },
+  {
+    "path": "skills/ppt-workbench/references/creator-acquisition.md",
+    "bytes": 3976,
+    "sha256": "66cbb6d25bdd775df17325411575be4deb771564a23d988cab85b5fccdd75208"
   },
   {
     "path": "skills/ppt-workbench/references/design-workflow.md",
@@ -101,8 +111,8 @@
   },
   {
     "path": "skills/ppt-workbench/references/native-pptx-workflow.md",
-    "bytes": 6859,
-    "sha256": "e72007fe8e8c70d578a6df49007b0ea11bee2bb129d54eed89d5f78a108b7523"
+    "bytes": 7322,
+    "sha256": "f4727219579c18f7d357916d643ab28fa94d2f0b1bcb9b05f1cc6c5ca7ae582c"
   },
   {
     "path": "skills/ppt-workbench/references/project-operations.md",
@@ -171,8 +181,8 @@
   },
   {
     "path": "docs/INSTALL_FOR_CODEX.md",
-    "bytes": 5161,
-    "sha256": "06cc42eb5d202b22f3169a7bc048ef3389c62dd23d464db1d5bbb4bc16cc92c5"
+    "bytes": 5182,
+    "sha256": "4a987a1c55155d715b9b1520fc9e16b8db12042c2dd86720fb89e8dba25bdef1"
   },
   {
     "path": "docs/USAGE.md",
@@ -185,19 +195,24 @@
     "sha256": "e955759ff8e97a9cb4005447aba03ed26c9ed892d0b6c1631db751d70155f129"
   },
   {
+    "path": "docs/VERSION-0.3.1.md",
+    "bytes": 1542,
+    "sha256": "822bcf30814eda792f707bd021e2347a225d3124c2dbcfcae57be6d144bf6911"
+  },
+  {
     "path": "docs/VERSION-0.3.md",
     "bytes": 2902,
     "sha256": "b8202d82f91e22479f7be7ce387c5e713fdcabb9e972cef95b1ea2e6e4c933c4"
   },
   {
     "path": "docs/beginner-guide.html",
-    "bytes": 33926,
-    "sha256": "55d78b25cfcefdd3f654dd7261ecbd5867a56cf116333f3d3181c599ade9ad2d"
+    "bytes": 34787,
+    "sha256": "12c37299b2877d7a81064dbad956f51efd56f7509717da64487d6a368bea2468"
   },
   {
     "path": "AGENTS.md",
     "bytes": 1899,
-    "sha256": "5e923321a2efcdbd7861f41e88f7b5bb77cdd08795e1f991236938ef3485e62b"
+    "sha256": "e561348bc7fcdf02b10ee53fe9794bc08ed0500db7b2ec158bdb71a4291b97c0"
   },
   {
     "path": ".gitignore",
@@ -207,12 +222,12 @@
   {
     "path": "package.json",
     "bytes": 607,
-    "sha256": "a1930a58a624308e243ff7d1b5db73abe0be8e9e00f17be56baab9950490f774"
+    "sha256": "462712612809c61a969f604433d99b11adada3306592bace7fd3c1835df55b75"
   },
   {
     "path": "package-lock.json",
     "bytes": 59675,
-    "sha256": "6074573ca9021a37e4cf641d11bd72f8b4d389a47152ca0ec4918f36d4ae9efa"
+    "sha256": "cb362764e7876f70d1d6544d13c854e4408a9ce4e0f250a41ff3830f6496a8e2"
   },
   {
     "path": "PROVENANCE.json",
@@ -221,18 +236,18 @@
   },
   {
     "path": "README.md",
-    "bytes": 11281,
-    "sha256": "0e79880c99680b7b21e812ab800d8c0511bd49be6f3e4d29280f5ccefc81f5b6"
+    "bytes": 11562,
+    "sha256": "99603b95c166bcee9e00a800a13869b9bc5904e0f2b537670dd66c9308401939"
   },
   {
     "path": "验收说明.md",
     "bytes": 5270,
-    "sha256": "60f49e905f01b35375f0a065b57e63549f69a58f46f95a1fd0a8480c0ff820b5"
+    "sha256": "123c5694e36b9ea1243d47b845fca1e18d28ef39eab79b9f5d864317a49a2f9c"
   },
   {
     "path": "install.ps1",
     "bytes": 5343,
-    "sha256": "84b1ff11c9a99e446e78a7d6f86fcb619b564773b2c03410ca9b94694d6c2df4"
+    "sha256": "0b6a65fd6d4c3a2f9c2118e91531501b48501f4b17eba401bbd64410d7f5f71d"
   },
   {
     "path": "install.cmd",
@@ -242,12 +257,12 @@
   {
     "path": "verify.ps1",
     "bytes": 889,
-    "sha256": "5d549d558e2fff1de2b8dc7a895112eab5519568371f7152d5adcbeefbadca4a"
+    "sha256": "ebc4e3c86b9396125bcbc76336d4cb88e6bcaf730f207f17a04256cb898c20ae"
   },
   {
     "path": "uninstall.ps1",
     "bytes": 572,
-    "sha256": "5b5073697cc236da9c02f9181056aaa9f00ae7c630b0a10500b74560d072352b"
+    "sha256": "bdf4c469cbd2e27e84fb78a31fca0a67239c23cddd8857bbf569afe4bcff33b5"
   },
   {
     "path": "tests/configure.test.mjs",
@@ -261,13 +276,18 @@
   },
   {
     "path": "tests/mcp.test.mjs",
-    "bytes": 1876,
-    "sha256": "91da2ec912ef3e940bd195a3d2812e2ed1b75988a669b5d6e68ec824e6b17f86"
+    "bytes": 2545,
+    "sha256": "473a2b77615336241a1ceed02466d7d8ac747d2aa2bf5da2b63c24f32ab47720"
   },
   {
     "path": "tests/native-pptx.test.mjs",
-    "bytes": 8792,
-    "sha256": "e1484a9bb14361cf76b73ac8284c383f2a667e4596faafbf2bf879e9edd061f3"
+    "bytes": 10363,
+    "sha256": "9476c6a027be3aca05c24d4fbd6700689457500603b5f3fbb6d326554fe92f7b"
+  },
+  {
+    "path": "tests/placement-progress.test.mjs",
+    "bytes": 2013,
+    "sha256": "5007dc85bf4356f0aa03b762a3bf1b1cd38afdafdc8711644723741ffb41285e"
   },
   {
     "path": "tests/project-state.test.mjs",

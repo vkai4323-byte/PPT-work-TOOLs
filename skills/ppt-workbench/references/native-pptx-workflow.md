@@ -61,3 +61,5 @@ OfficeCLI 是外部依赖，安装包未捆绑其二进制。先检查本机可�
 - 新聊天用 projectPath 调用 resume；focus/confirmed/pending 可通过 resume.patch 更新。记录用于接续，不代表额外授权。
 
 当前范围：源文件快照、原生对象读稿、作用范围计划、OfficeCLI batch、差异门禁、版本交付。不是 PPTX↔HTML 双向同步，也没有通用的宿主选区读取或全自动视觉验收。
+
+提交时可一并传 `contextPatch:{focus,confirmed,pending}`，与新 current 写入同一个状态文件；数组替换前先读旧记录，未提供的项保留。`resume.lastRevision.contextUpdated=false` 表示该轮提交未同步待办，应核对。commit 只表示工作稿已保存，不代表用户确认。补图时还需读取 placement plan，版本变化会使旧布图/确认状态过期；按实际新稿重新核实，不批量冒认确认。

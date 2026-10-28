@@ -13,6 +13,10 @@ test('fresh MCP connection discovers tools and creates/checks/exports a project'
     const tmp=fs.mkdtempSync(path.resolve('tests','mcp-'));
     const init=await client.callTool({name:'deck_init',arguments:{directory:path.join(tmp,'fresh.deck'),title:'全新会话测试'}});
     const {manifestPath}=JSON.parse(init.content[0].text);
+    const ledgerRead=JSON.parse((await client.callTool({name:'ppt_placement_plan',arguments:{targetPath:manifestPath}})).content[0].text);
+    const ledgerWrite=await client.callTool({name:'ppt_placement_plan',arguments:{targetPath:manifestPath,expectedSourceHash:ledgerRead.sourceHash,plan:{assets:[],placements:[],slots:[{id:'cover-art',slideId:'cover',outputKind:'concept-cover',intent:'本次创意示意',status:'needed'}]}}});
+    assert.ok(!ledgerWrite.isError,JSON.stringify(ledgerWrite));assert.equal(JSON.parse(ledgerWrite.content[0].text).progress.total,1);
+    assert.ok(tools.tools.find(t=>t.name==='pptx_commit').inputSchema.properties.contextPatch);
     const context=await client.callTool({name:'deck_context',arguments:{manifestPath,patch:{focus:['文字与美术交叉进行']}}});assert.ok(!context.isError);
     const identity=await client.callTool({name:'deck_identify',arguments:{manifestPath,slideId:'cover'}});assert.ok(!identity.isError);
     const state=JSON.parse((await client.callTool({name:'deck_resume',arguments:{manifestPath}})).content[0].text);assert.deepEqual(state.context.focus,['文字与美术交叉进行']);

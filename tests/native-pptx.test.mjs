@@ -36,6 +36,20 @@ test('element color edit commits new native version without altering original or
  const report=await reviewPptx({projectPath:a.projectPath,revisionId:p.revisionId});assert.equal(report.ok,true,JSON.stringify(report));assert.deepEqual(report.changedSlides,['700']);assert.equal(report.textChanges.length,0);
  const c=await commitPptx({projectPath:a.projectPath,revisionId:p.revisionId,expectedCandidateHash:report.candidateHash,validation:{structure:'测试夹具关系完整','visual':'机械颜色修改，本测试未运行视觉验收'}});assert.equal(c.ok,true);assert.deepEqual(fs.readFileSync(a.file),original);assert.notEqual(c.outputPath,p.workingFile);
 });
+
+test('commit updates context with version, preserves unspecified context, rejects invalid patch before saving',async()=>{
+ const a=await setup('context-sync');
+ await resumePptx({projectPath:a.projectPath,patch:{confirmed:['保留原文'],pending:['改色'],focus:['第1页']}});
+ const p=await prep(a);await mutate(p.workingFile,'ppt/slides/slide2.xml',s=>s.replace('FFFFFF','FFCC66'));
+ const r=await reviewPptx({projectPath:a.projectPath,revisionId:p.revisionId});
+ const args={projectPath:a.projectPath,revisionId:p.revisionId,expectedCandidateHash:r.candidateHash,validation:{structure:'测试夹具','visual':'属性改色，未做视觉验收'}};
+ await assert.rejects(commitPptx({...args,contextPatch:{pending:'invalid'}}),/记录字段/);
+ assert.equal((await resumePptx({projectPath:a.projectPath})).current.hash,a.current.hash);
+ await commitPptx({...args,contextPatch:{pending:['待用户查看'],focus:['本轮已改色']}});
+ const next=await resumePptx({projectPath:a.projectPath});assert.deepEqual(next.context.confirmed,['保留原文']);assert.deepEqual(next.context.pending,['待用户查看']);assert.equal(next.lastRevision.versionHash,next.current.hash);assert.equal(next.lastRevision.contextUpdated,true);
+ const ledger=await placementPlan({targetPath:a.projectPath,expectedSourceHash:next.current.hash,plan:{assets:[],placements:[],slots:[{id:'future-cover',slideId:'700',intent:'真实作品封面',outputKind:'work-evidence',status:'needed'}]}});
+ assert.equal(ledger.progress.total,1);assert.equal(ledger.plan.slots[0].id,'future-cover');
+});
 test('blocks confirmed text changes, other objects, slide background and shared resources',async()=>{
  for(const [name,part,fn,code] of [
  ['text','ppt/slides/slide2.xml',s=>s.replace('确认文案2','意外改写'),'confirmed-text-changed'],

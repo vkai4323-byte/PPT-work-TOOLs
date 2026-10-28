@@ -56,3 +56,23 @@ native slideId 来自 PPTX 当前版本，deck slideId 来自 manifest。origin 
 程序检查可覆盖缺图、哈希变化、无效框、部分拉伸与边界风险。低分辨率按实际显示面积判断，不强制所有头像≥1200px；重复图片可能合理；有意出血不等于错误。脸被裁掉、语义不符、主体清晰度和可读性需要实际看图。先联系表看节奏，再看相关单页/素材细节。
 
 交付前消除幕后指令和草稿残留，但保留用户明确需要的占位、真实来源、模板字段。纯净交付不能成为擅自删减已确认机制的理由。
+
+## 全部图位、取材进度与版本
+
+补多页图片时，先把本轮全部需求写入 plan.slots，即使尚无素材也要登记；assets/placements 可以为空。每个图位的 id 稳定，slideId 使用真实页面 ID。小范围只改一个头像无需建立全稿清单。范围改变时明确增减图位及原因，避免把已找到的 3 张图片当成全部需求。
+
+slots 示例：
+
+```json
+[{"id":"creator-work-1","slideId":"271","outputKind":"work-evidence","intent":"证明达人擅长漫展路人互动；保留作品标题","status":"needed"}]
+```
+
+outputKind：identity 身份图、work-evidence 真实作品、concept-cover 本次创意封面、scene-mockup 场景示意、brand 品牌资产、decoration 装饰。选图前写清人物/主体、动作、场景、要表现的结果，按表达目的填写 intent；不要把真实过往封面直接当成本次创意示意。
+
+status：needed 待取材、blocked 受阻（需 blocker）、acquired 已落盘（需 assetId）、placed 已布图、shown 已提供可用预览、approved 用户确认、rejected 用户否决。后三类确认均是调用方记录，不是工具自动认证。placed 及后续状态需对应 placement、当前 versionHash、matchReview；shown 及后续需 deliveryEvidence；approved/rejected 另需真实 userFeedback。工具无法验证用户是否真的看过，禁止把打开预览的 queued 回执写成已展示。
+
+先保存新 PPT 版本，再基于新 sourceHash 更新图位状态。progress 单独计入 stale，换稿或素材字节变化的旧确认不会计入当前完成数；旧记录保留供核对，不能自动升级为新稿批准。旧计划无 slots 时总数返回 null，不猜完成率。每次写入完整 plan 前先读取原计划，保留有效图位和取材尝试。
+
+attempts 可记录 route、outcome（success/failed/timeout/unavailable）、detail、实际 elapsedMs。失败一次后根据原因切换可用路径，避免新聊天重走同一失败。参考 [达人取材](creator-acquisition.md)。
+
+交付单页时说明本轮修改页、已提供的预览、尚未解决的图位；用户要求逐页确认时，先交付当前页再继续下一页。已放入不等于已验收，已导出不等于已打开。默认保留原图、裁切副本和来源记录；不把收集成功率当成创意匹配率。

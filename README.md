@@ -1,6 +1,8 @@
-# PPT Workbench 0.3.0
+# PPT Workbench 0.3.1
 
 把本机 SuperADC 的 HTML deck 测量与原生 PPTX 导出能力接到其他 Windows 电脑上的 Codex。安装包包含实际执行引擎、MCP 工具、用户级 Skill 和安装器；不是只加一段“少看图片”的提示词。
+
+0.3.1 新增达人主页取材与失败切换规则、完整图位进度、版本绑定的展示/反馈记录，以及提交时同步待办。详见 [0.3.1 更新](docs/VERSION-0.3.1.md)。这些规则使用目标机已有的浏览器工具，不新增社交平台采集服务。
 
 0.3.0 补齐原生 PPTX 接管、按批注范围修改、OfficeCLI 批处理、差异检查与版本交付，并加入两条路线共用的素材布图计划。保留 0.2 的 deck 快照与稳定元素能力。制作方式可交叉、跳过或回退，不固定四阶段。详见 [新版说明](docs/VERSION-0.3.md)。
 
@@ -22,7 +24,7 @@
 如果需要重启 Codex，请明确告诉我；不要把 MCP 自检成功说成 UI 已完成验收。
 ```
 
-安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.3.0.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
+安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.3.1.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
 
 ```powershell
 git clone https://github.com/vkai4323-byte/PPT-work-TOOLs.git
@@ -69,7 +71,7 @@ $ppt-workbench 请先检查 PPT 环境，然后根据我的文案制作可编辑
 
 ## 安装到哪里
 
-- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.3.0`。
+- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.3.1`。
 - 浏览器：`%LOCALAPPDATA%\PPTWorkbench\browsers`。
 - Skill：`%USERPROFILE%\.agents\skills\ppt-workbench`。
 - 工具注册：`%CODEX_HOME%\config.toml`；未设置 CODEX_HOME 时为 `%USERPROFILE%\.codex\config.toml`。

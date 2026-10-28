@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {digest,projectRoot,projectSourceHash,safePath,writeAtomic,projectLock} from './project-state.mjs';
 import {resumePptx} from './native-pptx.mjs';
+import {validateSlots,slotProgress} from './placement-progress.mjs';
 
 // The ledger records caller-observed evidence. It never claims to have looked at an image.
 export async function placementPlan({targetPath,plan,expectedSourceHash}){
@@ -33,12 +34,14 @@ export async function placementPlan({targetPath,plan,expectedSourceHash}){
         if(!['cover','contain','preserve-existing'].includes(p.fit)||!p.purpose)throw new Error('放置需要 fit 和用途。');
         if(p.frame&&(!['px','emu','cm'].includes(p.frame.unit)||['x','y','width','height'].some(k=>!Number.isFinite(p.frame[k]))||p.frame.width<=0||p.frame.height<=0))throw new Error('放置框尺寸/单位无效。');
       }
-      const saved={v:1,backend,sourceHash,assets,placements:plan.placements,notes:plan.notes||'',createdAt:new Date().toISOString(),reviewEvidence:'caller-reported'};
+      const slots=validateSlots(plan.slots,assets,plan.placements,slideIds,sourceHash);
+      const saved={v:2,backend,sourceHash,assets,placements:plan.placements,slots,notes:plan.notes||'',createdAt:new Date().toISOString(),reviewEvidence:'caller-reported'};
       if(fs.existsSync(file))writeAtomic(root,'notes/placement-history/'+Date.now()+'-'+crypto.randomUUID()+'.json',fs.readFileSync(file));
       writeAtomic(root,'notes/placement-plan.json',JSON.stringify(saved,null,2)+'\n');
     }
     const saved=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):null;
-    return {ok:true,backend,sourceHash,slideIds,plan:saved,planMatchesSource:saved?.sourceHash===sourceHash,assets:saved?.assets.map(a=>({id:a.id,current:fs.existsSync(a.file)&&digest(fs.readFileSync(a.file))===a.hash}))||[],modelImageInputs:0};
+    const assets=saved?.assets.map(a=>({id:a.id,current:fs.existsSync(a.file)&&digest(fs.readFileSync(a.file))===a.hash}))||[];
+    return {ok:true,backend,sourceHash,slideIds,plan:saved,planMatchesSource:saved?.sourceHash===sourceHash,assets,progress:slotProgress(saved,sourceHash,assets),modelImageInputs:0};
   }finally{release();}
 }
 export function inspectAsset({file}){if(!path.isAbsolute(file))throw new Error('需要素材绝对路径。');const bytes=fs.readFileSync(file);return {ok:true,file,hash:digest(bytes),bytes:bytes.length,visualReview:'not-performed',modelImageInputs:0};}

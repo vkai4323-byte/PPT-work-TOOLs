@@ -87,7 +87,7 @@ async function adopt({file,directory,projectPath,expectedCurrentHash,label='接�
 async function resume({projectPath,patch}){
   const {state,root}=load(projectPath);const file=safe(root,state.current.file),actualHash=hash(fs.readFileSync(file));
   if(patch){for(const key of Object.keys(patch)){if(!['focus','confirmed','pending'].includes(key)||!Array.isArray(patch[key])||patch[key].some(x=>typeof x!=='string'))throw new Error('项目记录字段无效。');}state.context={...state.context,...patch};writeJSON(projectPath,state);}
-  const index=readJSON(safe(root,state.current.indexFile));return {ok:true,projectPath,authoritativeFile:file,current:state.current,currentFileMatches:actualHash===state.current.hash,actualHash,slides:outline(index),context:state.context,previousDeck:state.previousDeck,history:state.history,modelImageInputs:0};
+  const index=readJSON(safe(root,state.current.indexFile));return {ok:true,projectPath,authoritativeFile:file,current:state.current,currentFileMatches:actualHash===state.current.hash,actualHash,slides:outline(index),context:state.context,lastRevision:state.lastRevision||null,previousDeck:state.previousDeck,history:state.history,modelImageInputs:0};
 }
 function validateScope(index,scope){
   if(!scope||!['element','slide','slides','deck'].includes(scope.kind))throw new Error('需要明确批注作用范围：element/slide/slides/deck。');
@@ -139,12 +139,16 @@ async function review({projectPath,revisionId}){
   const before=await inspectBytes(fs.readFileSync(safe(root,plan.base.file)),plan.base.file),candidate=safe(root,plan.workingFile),bytes=fs.readFileSync(candidate),after=await inspectBytes(bytes,candidate);
   const report={...difference(before,after,plan),projectPath,revisionId,baseHash:before.hash,candidateHash:after.hash,workingFile:candidate,modelImageInputs:0};writeJSON(safe(root,'plans/'+revisionId+'-review.json'),report);return report;
 }
-async function commit({projectPath,revisionId,expectedCandidateHash,validation}){
+async function commit({projectPath,revisionId,expectedCandidateHash,validation,contextPatch}){
   const report=await review({projectPath,revisionId});if(!report.ok)return report;
   if(expectedCandidateHash!==report.candidateHash)throw new Error('候选稿已变化，请重新 review。');
   if(!validation?.structure?.trim()||!validation?.visual?.trim())throw new Error('记录实际结构检查与视觉检查结果；无需视觉检查时写明原因，不可伪称通过。');
+  if(contextPatch){for(const key of Object.keys(contextPatch)){if(!['focus','confirmed','pending'].includes(key)||!Array.isArray(contextPatch[key])||contextPatch[key].some(x=>typeof x!=='string'))throw new Error('项目记录字段无效。');}}
   const {state,root}=current(projectPath),plan=planFor(root,revisionId),bytes=fs.readFileSync(safe(root,plan.workingFile));if(hash(bytes)!==expectedCandidateHash)throw new Error('保存前候选稿变化。');
-  const index=await inspectBytes(bytes,plan.workingFile),saved=saveVersion(root,bytes,index,plan.instruction,{baseHash:plan.base.hash,revisionId,validation});state.history.push(saved);state.current=saved;writeJSON(projectPath,state);
+  const index=await inspectBytes(bytes,plan.workingFile),saved=saveVersion(root,bytes,index,plan.instruction,{baseHash:plan.base.hash,revisionId,validation});state.history.push(saved);state.current=saved;
+  if(contextPatch)state.context={...state.context,...contextPatch};
+  state.lastRevision={versionHash:saved.hash,changedSlides:report.changedSlides,contextUpdated:!!contextPatch};
+  writeJSON(projectPath,state);
   return {ok:true,projectPath,current:saved,outputPath:safe(root,saved.file),report,validationRecord:'caller-reported',modelImageInputs:0};
 }
 async function batch({projectPath,revisionId,batchFile,expectedWorkingHash,officecli='officecli'}){
