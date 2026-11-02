@@ -4,6 +4,8 @@
 
 0.4.0-dev 为完整工作流预览版，新增星图/B站取材、真实主页截图与按需裁切、固定依赖自动安装、浏览器首次授权引导，以及Monet私有模块登记和生图台账。详见[预览版状态](docs/VERSION-0.4.0-dev.md)。客户机业务验收仍待执行，不能将本版称为完整迁移已通过。
 
+**先直观看看这次更新：** [下载客户介绍 HTML](https://github.com/vkai4323-byte/PPT-work-TOOLs/raw/refs/heads/codex/workflow-preview-20261102/docs/workbench-update-guide.html)，保存后用浏览器打开。包含可点击流程、6个使用场景、一键复制话术，以及预览版与正式验收的说明；单文件可离线阅读。
+
 0.3.0 补齐原生 PPTX 接管、按批注范围修改、OfficeCLI 批处理、差异检查与版本交付，并加入两条路线共用的素材布图计划。保留 0.2 的 deck 快照与稳定元素能力。制作方式可交叉、跳过或回退，不固定四阶段。详见 [新版说明](docs/VERSION-0.3.md)。
 
 **给不懂技术的使用者：** 下载 [新手教学 HTML](https://github.com/vkai4323-byte/PPT-work-TOOLs/raw/refs/heads/main/docs/beginner-guide.html) 后，用浏览器打开。按7种工作情况查看能做什么、如何提要求、Agent 会怎样操作；支持复制话术，可离线阅读。安装包内也有 `docs/beginner-guide.html`。

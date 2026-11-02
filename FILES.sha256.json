@@ -500,11 +500,6 @@
     "sha256": "7d2141d1fbdeb6ce28e5cc2fc3b120b663720e6b0e2cab9f348bffc503a324b5"
   },
   {
-    "path": "README.md",
-    "bytes": 12055,
-    "sha256": "2984d66c68badea74eb34a1b9d47ec1fe07b6aee6be1b3aee18d70ced9b70b83"
-  },
-  {
     "path": "验收说明.md",
     "bytes": 5635,
     "sha256": "ef8b0776db58676b9feb31fdbe151948decde0eb0ad7619d7b4dc0aa7887d32f"
@@ -558,5 +553,15 @@
     "path": "tests/project-state.test.mjs",
     "bytes": 8574,
     "sha256": "3f049e0dc04791a4ae6dd3353162f36226a04b99b94b200b0966f2369dd6db17"
+  },
+  {
+    "path": "README.md",
+    "bytes": 12412,
+    "sha256": "da7b86ee287d2deb4e3e452ae97f831c21b93f8b012e1550658b0cb6b2f0169c"
+  },
+  {
+    "path": "docs/workbench-update-guide.html",
+    "bytes": 37017,
+    "sha256": "3d706b135138b8b9b0dfb49fa7613d35c6bf7b3194a76b535c57f9d152f292d7"
   }
 ]
