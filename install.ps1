@@ -7,12 +7,12 @@
 )
 $ErrorActionPreference = 'Stop'
 $sourceRoot = $PSScriptRoot
-$runtimeRoot = Join-Path ([IO.Path]::GetFullPath($InstallRoot)) '0.3.1'
+$runtimeRoot = Join-Path ([IO.Path]::GetFullPath($InstallRoot)) '0.4.0-dev'
 $InstallRoot = [IO.Path]::GetFullPath($InstallRoot)
 $browserRoot = if ($BrowserCache) { [IO.Path]::GetFullPath($BrowserCache) } else { Join-Path $InstallRoot 'browsers' }
 if (-not [Environment]::Is64BitOperatingSystem) { throw 'This package requires Windows x64.' }
 New-Item -ItemType Directory -Path $runtimeRoot -Force | Out-Null
-foreach ($name in @('src','tools','skills','docs')) {
+foreach ($name in @('src','tools','skills','docs','modules')) {
   $from = Join-Path $sourceRoot $name
   $to = Join-Path $runtimeRoot $name
   if ([IO.Path]::GetFullPath($from) -ne [IO.Path]::GetFullPath($to)) {
@@ -83,5 +83,28 @@ try {
   $env:PATH = $previousPath
   if ($null -eq $previousBrowsers) { Remove-Item Env:PLAYWRIGHT_BROWSERS_PATH -ErrorAction SilentlyContinue } else { $env:PLAYWRIGHT_BROWSERS_PATH=$previousBrowsers }
 }
+$workflowStatus = 'not_requested'
+if (-not $RuntimeOnly) {
+  try {
+    & (Join-Path $runtimeRoot 'tools/install-workflow.ps1') -RuntimeRoot $runtimeRoot -UserHome $UserHome
+    $workflowStatus = 'installed_platform_validation_pending'
+  }
+  catch {
+    $workflowStatus = 'installation_failed'
+    $failure=@{state='technical_failed';exceptionType=$_.Exception.GetType().FullName;errorId=$_.FullyQualifiedErrorId;script=$_.InvocationInfo.ScriptName;line=$_.InvocationInfo.ScriptLineNumber;message=$_.Exception.Message}
+    [IO.File]::WriteAllText((Join-Path $runtimeRoot 'workflow-install-error.json'), ($failure | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
+    Write-Warning 'Creator workflow installation failed. PPT tools are retained; full workflow is incomplete.'
+  }
+}
+$browserStatus='not_verified'
+if (Test-Path -LiteralPath (Join-Path $runtimeRoot 'browser-onboarding.json')) {
+  $browserStatus=(Get-Content -LiteralPath (Join-Path $runtimeRoot 'browser-onboarding.json') -Raw -Encoding UTF8 | ConvertFrom-Json).state
+}
+$summary = @{ppt='installed'; creators=$workflowStatus; browser=$browserStatus; monet='fixed_test_baseline_received_production_integration_pending'; fullWorkflowReady=$false}
+[IO.File]::WriteAllText((Join-Path $runtimeRoot 'workflow-install-result.json'), ($summary | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
+if ($workflowStatus -eq 'installation_failed') {
+  Write-Host 'Partial installation. Codex must inspect workflow-install-result.json and workflow-install-error.json, then resume failed modules.'
+  exit 2
+}
 if ($RuntimeOnly) { Write-Host 'Runtime installed. Codex configuration was not changed.' }
-else { Write-Host 'Installed. Restart Codex and open a new chat; invoke $ppt-workbench for the first task.' }
+else { Write-Host 'PPT and creator sources installed. Full workflow acceptance is pending; see workflow-install-result.json.' }

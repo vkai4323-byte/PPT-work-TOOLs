@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "status": "staged_not_customer_verified",
+  "redistribution": "python_binaries_not_redistributed_official_downloads",
+  "monet": "private_baseline_received_live_proposal_not_verified",
+  "files": [
+    {
+      "path": "skills/douyin-xingtu/SKILL.md",
+      "sha256": "0aede15b4d1c6bcbbc5f5570f43153358336a84551f72f77f1f4ae2620f6feb5"
+    },
+    {
+      "path": "skills/douyin-xingtu/references/multi-pass-retrieval.md",
+      "sha256": "531759d7699080dfaac0d4e57bba032a8427647fe40602e8db3ccab8ad39789d"
+    },
+    {
+      "path": "skills/douyin-xingtu/references/output-contract.md",
+      "sha256": "549043901191adadea9ed916bc1ac740573bc9c04ac24cef2b97a1df35d151b4"
+    },
+    {
+      "path": "skills/douyin-xingtu/references/similar-creator-screening.md",
+      "sha256": "dcb334ad5b2d15c18980147a63b815221e44e63c3d2d2c23244a802be961aec9"
+    },
+    {
+      "path": "skills/douyin-xingtu/references/xingtu-observed-api.md",
+      "sha256": "3d2aeb0d7c7a586f2edb64ae4ee6bd828c67fc216864090ec8caaa3df7ef3d79"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_batch.py",
+      "sha256": "a843281435e6404d075559d3e1acd880c2e9615fd1162c139f31dcfba0dd5270"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_direct.py",
+      "sha256": "b3f0683898208d69dc8cc9db407f338d84b625194bafebc33ffc523407509630"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_download_review_covers.py",
+      "sha256": "f6dfbaca66a04186f0a9ff82283bd1e2696c402dd54771cdec89eee275b0f1de"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_lookup_names.py",
+      "sha256": "564779fa4c72fbee22fe5d9a3e7e620a510f62fc245824eb59f88507a99fcab2"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_prepare_review.py",
+      "sha256": "1adee23f68457106e1c00a0fb9a623ef7806139c3480d00c84a94e71e6abc89f"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_similarity.py",
+      "sha256": "28a911834c0b3f85649764e27ad85387f7ceb4cf89f2104df095d8de2133352f"
+    },
+    {
+      "path": "skills/workbench-bilibili/scripts/bilibili_batch.py",
+      "sha256": "3a3bbce0bd0763390176d0f1d497fef78afe599b0e462fcb4ed87d8c99732aa9"
+    },
+    {
+      "path": "skills/workbench-bilibili/SKILL.md",
+      "sha256": "1bc5ab1f1840f34cf803de945f2330b233759e20626fe8f7fb1c47d04a7852a7"
+    },
+    {
+      "path": "skills/douyin-xingtu/scripts/xingtu_import_capture.py",
+      "sha256": "be86c645e6e3c9c1dfe1dd4042dea6fd370aef227a5f885569ef3c47103f40ea"
+    },
+    {
+      "path": "scripts/creator_capture.py",
+      "sha256": "028c03359339bf04a2d749df6f60ca393a2597e4040038e376d9869a00f7746e"
+    },
+    {
+      "path": "scripts/creator_crop.py",
+      "sha256": "3fadb36cd0b54a1b76cbb75f33624da0a3f1d0597fa3a8444f39eb3a15768df9"
+    },
+    {
+      "path": "scripts/xingtu_initialize.py",
+      "sha256": "11a18b74e59521fafd1575c06c39e2be89bff8121875124614ccabb7347fd1b5"
+    },
+    {
+      "path": "scripts/browser_preflight.py",
+      "sha256": "f2beb9c8fa31da7055402d4351d6b9d40210f3011cfbf9e0cf83606c85840df9"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "cd873cf28e0534528a930865907c0e374c4bf2eb1becd00d98b2230be65cad71"
+    },
+    {
+      "path": "skills/kimi-webbridge/SKILL.md",
+      "sha256": "d7d27849b81493299d4429e1ba75cb954a0a092580e71f9b75570ae7ae4233d8"
+    },
+    {
+      "path": "skills/kimi-webbridge/references/operations.md",
+      "sha256": "7f60c9811cf2c8755e5a66a07795620730aa1f1f23e3391f27f16f6f7142d7e6"
+    },
+    {
+      "path": "skills/kimi-webbridge/references/cli-creator/companion-skill-template.md",
+      "sha256": "f17d70fc178b507089acb96cd3f927a70fc28f25ccb4a9289ff90f4fde2e1e26"
+    },
+    {
+      "path": "skills/kimi-webbridge/references/cli-creator/go-layout.md",
+      "sha256": "89cbfb5127646ffbc3f54d45446d66c337d66f97a1d3f5bcac74d371012c40fc"
+    },
+    {
+      "path": "skills/kimi-webbridge/references/cli-creator/login-handling.md",
+      "sha256": "fd6aa463dfd25fbb8a2c3e84d53a3509aa6eb037dcc32c5dfaced55730f55a49"
+    },
+    {
+      "path": "skills/kimi-webbridge/references/cli-creator/site-exploration.md",
+      "sha256": "d7cdeb173add3dd5efc242dc1935fa6d6e1d1001ee3b4a28a29f26264d2e6a62"
+    },
+    {
+      "path": "skills/kimi-webbridge/references/cli-creator/workflow.md",
+      "sha256": "a5bb3523cd9f5c660da3ca7256e9f6b3e2f562773e27987c684d2c065889e54d"
+    },
+    {
+      "path": "requirements-pypi-win-py313.lock",
+      "sha256": "ee75765c3d5bea2252e118f9d85c9418d0ae18db720152dbd38e0a7b2c360a21"
+    },
+    {
+      "path": "build-requirements.lock",
+      "sha256": "83f111e093bad00e18d8ee645a55359e4a3b9ea26a1b2d8b91776712a0db30fb"
+    },
+    {
+      "path": "dependency-origins.json",
+      "sha256": "2f3a43fed16385474f0cb2b88a34b15ab3ef68af4b3dafe861e75a1258b4fd15"
+    }
+  ]
+}

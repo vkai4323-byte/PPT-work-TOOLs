@@ -3,7 +3,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { dispatch,bench } from './dispatch.mjs';
-const server=new McpServer({name:'ppt-workbench',version:'0.3.1'});
+const server=new McpServer({name:'ppt-workbench',version:'0.4.0-dev'});
 const manifestPath=z.string().describe('Absolute path to super-adc-deck.json.');
 const projectPath=z.string().describe('Absolute path to ppt-workbench-native.json.');
 const contextPatch=z.object({focus:z.array(z.string()).optional(),confirmed:z.array(z.string()).optional(),pending:z.array(z.string()).optional()});

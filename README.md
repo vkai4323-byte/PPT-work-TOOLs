@@ -1,8 +1,8 @@
-# PPT Workbench 0.3.1
+# PPT Workbench 0.4.0-dev
 
 把本机 SuperADC 的 HTML deck 测量与原生 PPTX 导出能力接到其他 Windows 电脑上的 Codex。安装包包含实际执行引擎、MCP 工具、用户级 Skill 和安装器；不是只加一段“少看图片”的提示词。
 
-0.3.1 新增达人主页取材与失败切换规则、完整图位进度、版本绑定的展示/反馈记录，以及提交时同步待办。详见 [0.3.1 更新](docs/VERSION-0.3.1.md)。这些规则使用目标机已有的浏览器工具，不新增社交平台采集服务。
+0.4.0-dev 为完整工作流预览版，新增星图/B站取材、真实主页截图与按需裁切、固定依赖自动安装、浏览器首次授权引导，以及Monet私有模块登记和生图台账。详见[预览版状态](docs/VERSION-0.4.0-dev.md)。客户机业务验收仍待执行，不能将本版称为完整迁移已通过。
 
 0.3.0 补齐原生 PPTX 接管、按批注范围修改、OfficeCLI 批处理、差异检查与版本交付，并加入两条路线共用的素材布图计划。保留 0.2 的 deck 快照与稳定元素能力。制作方式可交叉、跳过或回退，不固定四阶段。详见 [新版说明](docs/VERSION-0.3.md)。
 
@@ -15,19 +15,21 @@
 复制下面这段话即可：
 
 ```text
-请从 https://github.com/vkai4323-byte/PPT-work-TOOLs 下载并安装 PPT Workbench。
+请从 https://github.com/vkai4323-byte/PPT-work-TOOLs/tree/codex/workflow-preview-20261102 下载并安装 PPT Workbench 完整工作流预览版，请使用该分支。
 先阅读仓库 README.md、AGENTS.md 和 docs/INSTALL_FOR_CODEX.md，检查本机环境，
 在 Windows 上执行 install.ps1，完成用户级 Skill 与 MCP 注册并运行验证。
 保留我原来的 Codex 模型、账号和其他工具配置，不要只复制 SKILL.md。
-安装结束后，用中文告诉我如何启用 $ppt-workbench、它的功能和限制，
-并给出一个新建 PPT、一个继续修改项目的示例。
+安装验证后，继续按 docs/CUSTOMER_ACCEPTANCE.md 完成两页燕云十六声中腰部达人PPT验收，
+包括抖音/星图和B站各至少3位、真实素材，以及共6张16:9新增创意封面与标题。
+生图前向我集中确认费用范围和重做条件；技术问题请自行排查修复，
+仅在必要的本人登录、扫码、扩展授权或付费确认时提示我。
 如果需要重启 Codex，请明确告诉我；不要把 MCP 自检成功说成 UI 已完成验收。
 ```
 
-安装方式：克隆仓库后运行根目录 `install.ps1`；没有 Git 时使用 GitHub 的 **Code → Download ZIP**，或下载[独立安装包](downloads/PPT-Workbench-Codex-0.3.1.zip?raw=1)。解压后双击 `install.cmd`。代码仓库和独立安装包均包含安装所需源码，首次安装会下载运行依赖。
+安装方式：克隆指定预览分支后运行根目录 `install.ps1`；没有 Git 时下载[预览分支ZIP](https://github.com/vkai4323-byte/PPT-work-TOOLs/archive/refs/heads/codex/workflow-preview-20261102.zip)，或下载[独立预览安装包](downloads/PPT-Workbench-Codex-0.4.0-dev-preview.zip?raw=1)。代码仓库和独立安装包均包含安装器和必要工作流源码，首次安装自动从官方源获取固定依赖；无需客户分别配置工具。
 
 ```powershell
-git clone https://github.com/vkai4323-byte/PPT-work-TOOLs.git
+git clone --branch codex/workflow-preview-20261102 https://github.com/vkai4323-byte/PPT-work-TOOLs.git
 cd PPT-work-TOOLs
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ```
@@ -47,7 +49,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 | 按需预览 | 把预览图与联系表保存到本地，工具返回路径，按需开展视觉验收 |
 | 跨聊天继续 | 通过项目源文件、notes 和 progress.md 接续工作 |
 
-支持新建 HTML deck，以及已有/用户手改 PPTX 的接管与精修。原生 PPTX 的读取、快照、范围计划和差异检查已内置；实际修改主用另行安装的 OfficeCLI，也可配合合适的原文件编辑工具。截图重建、图片生成与达人检索仍需相应外部工具。
+支持新建 HTML deck，以及已有/用户手改 PPTX 的接管与精修。原生 PPTX 的读取、快照、范围计划和差异检查已内置；OfficeCLI由安装器自动获取。星图/B站适配器、截图与裁切入口随包提供；浏览器扩展及平台本人授权在客户机完成，生图复用客户已有的官方私有Monet模块和凭据。
 
 ## 在另一台电脑安装
 
@@ -71,7 +73,7 @@ $ppt-workbench 请先检查 PPT 环境，然后根据我的文案制作可编辑
 
 ## 安装到哪里
 
-- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.3.1`。
+- 运行时：`%LOCALAPPDATA%\PPTWorkbench\0.4.0-dev`。
 - 浏览器：`%LOCALAPPDATA%\PPTWorkbench\browsers`。
 - Skill：`%USERPROFILE%\.agents\skills\ppt-workbench`。
 - 工具注册：`%CODEX_HOME%\config.toml`；未设置 CODEX_HOME 时为 `%USERPROFILE%\.codex\config.toml`。

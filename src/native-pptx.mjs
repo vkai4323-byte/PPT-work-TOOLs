@@ -151,7 +151,15 @@ async function commit({projectPath,revisionId,expectedCandidateHash,validation,c
   writeJSON(projectPath,state);
   return {ok:true,projectPath,current:saved,outputPath:safe(root,saved.file),report,validationRecord:'caller-reported',modelImageInputs:0};
 }
-async function batch({projectPath,revisionId,batchFile,expectedWorkingHash,officecli='officecli'}){
+function installedOfficeCli(){
+  const file=path.resolve(import.meta.dirname,'../workflow-tools.json');
+  if(fs.existsSync(file)){
+    const configured=JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,'')).officecli;
+    if(typeof configured==='string'&&path.isAbsolute(configured)&&fs.existsSync(configured))return configured;
+  }
+  return 'officecli';
+}
+async function batch({projectPath,revisionId,batchFile,expectedWorkingHash,officecli=installedOfficeCli()}){
   absolute(batchFile);const input=readJSON(batchFile);if(!Array.isArray(input)||!input.length||input.some(x=>!['set','add','remove','move','swap','get','query'].includes(x.command)))throw new Error('batch 必须是支持的对象命令数组。');
   if(fs.statSync(batchFile).size>48*1024)throw new Error('请按页/区域拆分 batch，单批不超过48KiB。');
   const {state,root}=current(projectPath),plan=planFor(root,revisionId);if(plan.base.hash!==state.current.hash)throw new Error('修改计划已过期。');const file=safe(root,plan.workingFile),bytes=fs.readFileSync(file);

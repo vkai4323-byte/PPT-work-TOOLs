@@ -2,11 +2,13 @@
 
 本指引用于用户已经要求下载、安装或迁移本工具的场景。仅查看仓库不构成安装请求。
 
+预览版说明：本版用于真实客户验收，未标为稳定完成。获取codex/workflow-preview-20261102分支；首次登录与本人授权按[ONBOARDING_FOR_CODEX.md](ONBOARDING_FOR_CODEX.md)引导，技术操作由Codex执行，不把命令交给客户。
+
 ## 1. 下载并确认环境
 
 目标为 Windows x64 的本机 Codex。检查操作系统、用户目录、CODEX_HOME、网络和可用磁盘空间。使用当前用户权限，不需要管理员。首次安装会下载 Node（若缺失）、npm 包和 Chromium，需要能够访问相应下载服务，预留约 1 GB 以上空间更合适。
 
-克隆 `https://github.com/vkai4323-byte/PPT-work-TOOLs.git` 到明确的新目录。已有同名目录时先确认其内容，不要清空或覆盖用户工作。没有 Git 可下载仓库 ZIP 或 downloads 下的独立安装包，完整解压。不要只下载 SKILL.md 或在未保存到本地前直接执行远程脚本。
+从 `https://github.com/vkai4323-byte/PPT-work-TOOLs.git` 克隆codex/workflow-preview-20261102分支到明确的新目录。已有同名目录时先确认其内容，不要清空或覆盖用户工作。没有Git可下载对应分支ZIP或downloads下的独立预览安装包，完整解压。不要只下载SKILL.md或在未保存到本地前直接执行远程脚本。
 
 核对 README、install.ps1 和本指引。独立安装包旁提供 `.sha256` 文件，包内提供 FILES.sha256.json；它们用于发现传输损坏和核对文件一致性，并非独立可信的数字签名。
 
@@ -40,7 +42,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\verify.ps1
 
 ## 4. 必须向用户解释的内容
 
-0.3.1 注册后应发现 25 个工具。安装自检验证稳定元素修改、快照恢复、原生 PPTX 接管与项目接续。旧版升级重新运行安装器，保留原自定义目录参数；旧项目兼容，历史快照不会凭空补齐。说明新功能时参考 VERSION-0.3.1.md 和 VERSION-0.3.md。OfficeCLI 不随本包安装：用户要原生编辑时检查可执行文件，按已安装版本读取 help；缺失则说明外部依赖并安排安装或可用替代工具，不能把25个工具可发现等同于 OfficeCLI 已就绪。
+0.4.0-dev 的PPT MCP应发现25个工具，取材入口另由workbench-creators技能调用Python脚本。安装自检验证稳定元素修改、快照恢复、原生PPTX接管与项目接续。OfficeCLI现由install-workflow.ps1自动部署固定版本，实际路径在workflow-tools.json；使用verify-workflow.ps1复验，不要求客户配PATH。MCP可发现、OfficeCLI可执行与真实副本编辑验收分别记录。开发进度见WORKFLOW-INTEGRATION.md，不能引用尚不存在的版本说明。
 
 - `$ppt-workbench` 是聊天中的技能调用入口，不是终端命令。
 - 它用 HTML 源文件制作 PPT，通过 Chromium 实测排版，并导出可编辑 PPTX。
@@ -51,6 +53,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\verify.ps1
 - 尚未执行的目标机 PowerPoint/WPS 视觉验收，应如实列出。
 
 给出 docs/USAGE.md 的“新建”和“继续修改”示例，说明安装路径、验证结果和任何尚未完成项。
+
+## 完整迁移的业务验收
+
+用户要求整套工作流迁移时，安装和verify通过后继续读取[CUSTOMER_ACCEPTANCE.md](CUSTOMER_ACCEPTANCE.md)，执行两页燕云中腰部达人与6张16:9付费创意封面的实际验收。先由Codex复用并核验客户本机已有Monet官方模块；不重新安装无关服务，不复制其他设备凭据。尚缺私有适配登记或接口实现时，由Codex检查本机已成功模块和正式文档后补齐，不能将其说成客户需要重新登录。
+
+付费前向客户集中确认6张图的费用范围及重做条件；发布者不预设积分上限，也没有替客户批准无限支出。保存授权与任务检查点，未知提交不重发。技术问题由Codex处理，只有必要的本人登录、扫码、扩展权限与付费确认交给客户。真实业务验收未通过时，不将安装自检报告为完整迁移成功。
 
 ## 故障处理
 

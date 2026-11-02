@@ -10,6 +10,8 @@
 
 安装成功后，说明重启/新聊天的步骤、`$ppt-workbench` 的作用和 docs/USAGE.md 中的示例。核对 verify.ps1 结果；若当前聊天尚未加载新 MCP，可使用已安装技能的 CLI 入口。不能把协议自检描述成 Codex UI 已验收。
 
+用户要求完整迁移时，随后按docs/CUSTOMER_ACCEPTANCE.md执行两页燕云中腰部达人与6张16:9付费封面验收。付费前由客户Codex向客户集中确认费用范围；发布者没有替客户设置无限预算。不要以安装自检通过代替场景验收。技术问题由Codex处理，仅必要本人登录/扩展授权交客户。
+
 ## 当用户要求制作 PPT
 
 使用安装后的 ppt-workbench 技能；项目保存在用户选择的工作目录。示例 PPT 是功能验收夹具，不是商业设计模板。用户在 PowerPoint 中手改过的最新 PPTX 是事实源，不能用旧 HTML 导出覆盖。
@@ -18,6 +20,6 @@
 
 src/vendor/deck-engine.mjs 的来源和变更必须在 PROVENANCE.json 可追溯。修改执行引擎或配置逻辑时运行相关测试；全量测试用 npm test（需 npm ci、Playwright Chromium 和微软雅黑）。
 
-发布只收录源码、文档、技能、测试、示例和构建出的安装包。不要收录 node_modules、浏览器缓存、用户配置、账户信息、工作项目或测试生成目录。重新打包执行 node tools/package.mjs downloads/PPT-Workbench-Codex-0.3.1.zip；校验 ZIP 中 FILES.sha256.json 和旁边的 SHA256 文件。
+发布只收录源码、文档、技能、测试、示例和构建出的安装包。不要收录node_modules、第三方Python wheel、浏览器缓存、用户配置、账户信息、工作项目或测试生成目录。预览打包执行node tools/package.mjs downloads/PPT-Workbench-Codex-0.4.0-dev-preview.zip --preview；校验ZIP中FILES.sha256.json和旁边的SHA256文件。--preview不将客户机验收标为通过，稳定发行仍未启用。
 
 检查返回文字，预览只返回路径；不要把这种行为夸大为清理整个模型会话的图片历史。没有实际进行视觉检查，不得宣称视觉验收通过。

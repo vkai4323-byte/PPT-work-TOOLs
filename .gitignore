@@ -1,4 +1,9 @@
 node_modules/
+**/provider-bindings/
+**/private-providers/
+**/wheels/
+**/wheel-manifest.json
+**/requirements-win-py313.lock
 dist/
 .codex/
 .agents/
@@ -6,6 +11,7 @@ dist/
 .env.*
 runtime.json
 install-request.json
+workflow-install-error.json
 registration-verification.json
 *.log
 tests/*/

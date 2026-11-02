@@ -16,13 +16,13 @@
   },
   {
     "path": "src/mcp.mjs",
-    "bytes": 11320,
-    "sha256": "6a5242ddf64b7de7dab21ad148076ebd0a50950cb2bdc83d7b9aa982a1248557"
+    "bytes": 11274,
+    "sha256": "de59b604dae96eff8c71c75ba42c699fde01f5649fc54fdfa03f413f8cb5222a"
   },
   {
     "path": "src/native-pptx.mjs",
-    "bytes": 19390,
-    "sha256": "0f62cc6b118d7aab7163c9905d03f9eba24b9a2371f6a5158d91245b0f608646"
+    "bytes": 19764,
+    "sha256": "a154413a449ae29a7b3bc1287d921ffc2c3222fa20f8d5c0bd1ec232b3c1ae03"
   },
   {
     "path": "src/placement-plan.mjs",
@@ -50,9 +50,24 @@
     "sha256": "dad8207e0113b2226244c898dbe3cc0c2fc81ce1d3764ec611a4089d3465a9c5"
   },
   {
+    "path": "tools/bootstrap-lock.json",
+    "bytes": 898,
+    "sha256": "d97a7289f4a2876e62146f5363b9cd6147f16806be4097735a7dbdaf9c7ca53c"
+  },
+  {
+    "path": "tools/bootstrap-runtime.ps1",
+    "bytes": 2551,
+    "sha256": "39ffdd417a343ffff9f028a72107e49cc9893f1821b69d205dec41c7120ef50e"
+  },
+  {
     "path": "tools/configure.mjs",
-    "bytes": 4800,
-    "sha256": "608682fb35688e63eda7046e7ea31ab9c50a920e86ed306e94bf036c358e83f2"
+    "bytes": 4749,
+    "sha256": "cf93e6e9ff7c35f3fe50362372c73ed62eba503e8852125892a7f9e3ba5d63cd"
+  },
+  {
+    "path": "tools/disable-workflow.ps1",
+    "bytes": 1274,
+    "sha256": "ed26cf8d2597cbda5804b5bed0844381fa424e7afdc4e0e44b3a1b3ca72e597b"
   },
   {
     "path": "tools/extract-engine.mjs",
@@ -60,9 +75,19 @@
     "sha256": "7786cdc7ac25f21887de39cd8d0dd57274ba9447a2b06f6194065126c51be343"
   },
   {
+    "path": "tools/install-browser.ps1",
+    "bytes": 1940,
+    "sha256": "4ab49f1291a64c67631f0441beb13ae649283681f6b328a5331882549d10eeaf"
+  },
+  {
+    "path": "tools/install-workflow.ps1",
+    "bytes": 4253,
+    "sha256": "b56372e2d785df5f7680a123750175a567f9ec488322b6e077dc45079448aad7"
+  },
+  {
     "path": "tools/package.mjs",
-    "bytes": 2258,
-    "sha256": "25088ce74df106b097b900cf4dea4bf583e12094dc7735e84c5e828acbb05aa5"
+    "bytes": 3089,
+    "sha256": "f71a24054738f89790e5b40216b369103b3da49d8e1bc576ab6e26d39e28d940"
   },
   {
     "path": "tools/smoke.mjs",
@@ -75,9 +100,24 @@
     "sha256": "f36bb23e15b69a7d26dce07660f9eb6354e6aeb92f212ceb3c9acd1843706df3"
   },
   {
+    "path": "tools/verify-generation.ps1",
+    "bytes": 902,
+    "sha256": "cb72ad70d6f4b20f9562ae3211ac6a91e091900f836f5bc3cb2d98c2d085ae9d"
+  },
+  {
     "path": "tools/verify-registration.mjs",
-    "bytes": 4515,
-    "sha256": "c332aa4151a4af7d7d4e37e026f231585e5ea152fbfa70d233ccc2ddf79ac75c"
+    "bytes": 4468,
+    "sha256": "50f42cdc94788d87fe1fd403cb047c90f049cbd66b87618d8a774881b6e2a4ab"
+  },
+  {
+    "path": "tools/verify-workflow.ps1",
+    "bytes": 2098,
+    "sha256": "3f219a2d95d81c644d6996d76e09c5c22dec0afe3a89e0c9445213c0d700064b"
+  },
+  {
+    "path": "tools/workflow_doctor.py",
+    "bytes": 2367,
+    "sha256": "b14e66ef0a18031ec9ea20bbc5c053f0caf7b0a6d1f571f98836a03c3a04a919"
   },
   {
     "path": "skills/ppt-workbench/SKILL.md",
@@ -135,6 +175,201 @@
     "sha256": "bde3deb7c2830e8343117c6a4b840ee2392ab60db2bbb646545033aff97c69cc"
   },
   {
+    "path": "skills/workbench-creators/SKILL.md",
+    "bytes": 5705,
+    "sha256": "05b064e0733514a9ccb009d0e6ec50c446e849ca050f013d4f4bf2ae8b0a3342"
+  },
+  {
+    "path": "skills/workbench-creators/references/generation-rules.md",
+    "bytes": 14745,
+    "sha256": "642e5c6c85d47f221cf79d9f0e5b90d5237b42ee226d96aa410913ac17acc7cc"
+  },
+  {
+    "path": "modules/creator-workflow/build-requirements.lock",
+    "bytes": 191,
+    "sha256": "83f111e093bad00e18d8ee645a55359e4a3b9ea26a1b2d8b91776712a0db30fb"
+  },
+  {
+    "path": "modules/creator-workflow/dependency-origins.json",
+    "bytes": 9741,
+    "sha256": "2f3a43fed16385474f0cb2b88a34b15ab3ef68af4b3dafe861e75a1258b4fd15"
+  },
+  {
+    "path": "modules/creator-workflow/manifest.json",
+    "bytes": 4802,
+    "sha256": "606d794de5c8e8d68f46d4d448f9ad00aaee1821c503bd73e59d02cda760b703"
+  },
+  {
+    "path": "modules/creator-workflow/requirements-pypi-win-py313.lock",
+    "bytes": 2393,
+    "sha256": "ee75765c3d5bea2252e118f9d85c9418d0ae18db720152dbd38e0a7b2c360a21"
+  },
+  {
+    "path": "modules/creator-workflow/requirements.txt",
+    "bytes": 57,
+    "sha256": "cd873cf28e0534528a930865907c0e374c4bf2eb1becd00d98b2230be65cad71"
+  },
+  {
+    "path": "modules/creator-workflow/scripts/browser_preflight.py",
+    "bytes": 1821,
+    "sha256": "f2beb9c8fa31da7055402d4351d6b9d40210f3011cfbf9e0cf83606c85840df9"
+  },
+  {
+    "path": "modules/creator-workflow/scripts/creator_capture.py",
+    "bytes": 8661,
+    "sha256": "028c03359339bf04a2d749df6f60ca393a2597e4040038e376d9869a00f7746e"
+  },
+  {
+    "path": "modules/creator-workflow/scripts/creator_crop.py",
+    "bytes": 2382,
+    "sha256": "3fadb36cd0b54a1b76cbb75f33624da0a3f1d0597fa3a8444f39eb3a15768df9"
+  },
+  {
+    "path": "modules/creator-workflow/scripts/xingtu_initialize.py",
+    "bytes": 5640,
+    "sha256": "11a18b74e59521fafd1575c06c39e2be89bff8121875124614ccabb7347fd1b5"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/SKILL.md",
+    "bytes": 7608,
+    "sha256": "0aede15b4d1c6bcbbc5f5570f43153358336a84551f72f77f1f4ae2620f6feb5"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/references/multi-pass-retrieval.md",
+    "bytes": 6700,
+    "sha256": "531759d7699080dfaac0d4e57bba032a8427647fe40602e8db3ccab8ad39789d"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/references/output-contract.md",
+    "bytes": 3842,
+    "sha256": "549043901191adadea9ed916bc1ac740573bc9c04ac24cef2b97a1df35d151b4"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/references/similar-creator-screening.md",
+    "bytes": 4501,
+    "sha256": "dcb334ad5b2d15c18980147a63b815221e44e63c3d2d2c23244a802be961aec9"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/references/xingtu-observed-api.md",
+    "bytes": 3069,
+    "sha256": "3d2aeb0d7c7a586f2edb64ae4ee6bd828c67fc216864090ec8caaa3df7ef3d79"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_batch.py",
+    "bytes": 38667,
+    "sha256": "a843281435e6404d075559d3e1acd880c2e9615fd1162c139f31dcfba0dd5270"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_direct.py",
+    "bytes": 14641,
+    "sha256": "b3f0683898208d69dc8cc9db407f338d84b625194bafebc33ffc523407509630"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_download_review_covers.py",
+    "bytes": 1998,
+    "sha256": "f6dfbaca66a04186f0a9ff82283bd1e2696c402dd54771cdec89eee275b0f1de"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_import_capture.py",
+    "bytes": 1984,
+    "sha256": "be86c645e6e3c9c1dfe1dd4042dea6fd370aef227a5f885569ef3c47103f40ea"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_lookup_names.py",
+    "bytes": 2972,
+    "sha256": "564779fa4c72fbee22fe5d9a3e7e620a510f62fc245824eb59f88507a99fcab2"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_prepare_review.py",
+    "bytes": 6488,
+    "sha256": "1adee23f68457106e1c00a0fb9a623ef7806139c3480d00c84a94e71e6abc89f"
+  },
+  {
+    "path": "modules/creator-workflow/skills/douyin-xingtu/scripts/xingtu_similarity.py",
+    "bytes": 8518,
+    "sha256": "28a911834c0b3f85649764e27ad85387f7ceb4cf89f2104df095d8de2133352f"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/SKILL.md",
+    "bytes": 19437,
+    "sha256": "d7d27849b81493299d4429e1ba75cb954a0a092580e71f9b75570ae7ae4233d8"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/references/cli-creator/companion-skill-template.md",
+    "bytes": 2511,
+    "sha256": "f17d70fc178b507089acb96cd3f927a70fc28f25ccb4a9289ff90f4fde2e1e26"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/references/cli-creator/go-layout.md",
+    "bytes": 4907,
+    "sha256": "89cbfb5127646ffbc3f54d45446d66c337d66f97a1d3f5bcac74d371012c40fc"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/references/cli-creator/login-handling.md",
+    "bytes": 1436,
+    "sha256": "fd6aa463dfd25fbb8a2c3e84d53a3509aa6eb037dcc32c5dfaced55730f55a49"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/references/cli-creator/site-exploration.md",
+    "bytes": 4389,
+    "sha256": "d7cdeb173add3dd5efc242dc1935fa6d6e1d1001ee3b4a28a29f26264d2e6a62"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/references/cli-creator/workflow.md",
+    "bytes": 3926,
+    "sha256": "a5bb3523cd9f5c660da3ca7256e9f6b3e2f562773e27987c684d2c065889e54d"
+  },
+  {
+    "path": "modules/creator-workflow/skills/kimi-webbridge/references/operations.md",
+    "bytes": 5911,
+    "sha256": "7f60c9811cf2c8755e5a66a07795620730aa1f1f23e3391f27f16f6f7142d7e6"
+  },
+  {
+    "path": "modules/creator-workflow/skills/workbench-bilibili/SKILL.md",
+    "bytes": 487,
+    "sha256": "1bc5ab1f1840f34cf803de945f2330b233759e20626fe8f7fb1c47d04a7852a7"
+  },
+  {
+    "path": "modules/creator-workflow/skills/workbench-bilibili/scripts/bilibili_batch.py",
+    "bytes": 25406,
+    "sha256": "3a3bbce0bd0763390176d0f1d497fef78afe599b0e462fcb4ed87d8c99732aa9"
+  },
+  {
+    "path": "modules/generation/README.md",
+    "bytes": 2677,
+    "sha256": "d94ae9f386ffa780679f4bafb73af53b5d4a10383e999183180037cedc2ad620"
+  },
+  {
+    "path": "modules/generation/plan.py",
+    "bytes": 1058,
+    "sha256": "cdc488836f94a4bc96f73c6d2a41b750665430283718bf2e8da514e133523d41"
+  },
+  {
+    "path": "modules/generation/providers.py",
+    "bytes": 2342,
+    "sha256": "172ef6248af3d9b8696399111d409791a3dc730841e52c5050b6a47d701c6a09"
+  },
+  {
+    "path": "modules/generation/resume.py",
+    "bytes": 386,
+    "sha256": "5d66cf22cc0205ec0918d53036e1ce73d23c08784b3a76cb2fac202b61cf9e52"
+  },
+  {
+    "path": "modules/generation/run.py",
+    "bytes": 2427,
+    "sha256": "b16646ee6ed98593b524e5616b603d5b271b2dbdebc4169dde06c8cc870498e6"
+  },
+  {
+    "path": "modules/generation/setup_provider.py",
+    "bytes": 4121,
+    "sha256": "827c48465cda092fee74a439da4d1f5d4d4cd0e29aa48edae5671051ef744134"
+  },
+  {
+    "path": "modules/generation/slot_jobs.py",
+    "bytes": 10757,
+    "sha256": "1f9bf93170c9912491feab12da328a7434a920d15e99251681eb27b03323f89c"
+  },
+  {
     "path": "examples/验收示例/assets/pixel.png",
     "bytes": 68,
     "sha256": "97f48936d4ff6a820710d579db8eb2ca1b8c6934d447f1cabad96ab1b832a8bb"
@@ -180,9 +415,24 @@
     "sha256": "6dc41a19d1030d5a983fd6587c6216d43e39cce234c9c4f9bf7ae674c5710168"
   },
   {
+    "path": "docs/CUSTOMER_ACCEPTANCE.md",
+    "bytes": 5371,
+    "sha256": "333323dd2c87c56836bf778c93eafe03f4749d6d58472a3ce64c0f05d0653a18"
+  },
+  {
+    "path": "docs/DEPENDENCY_DELIVERY.md",
+    "bytes": 1589,
+    "sha256": "5aa094a72420d1185acfa0f4e9916b7b2d1a162d50ff3c3e7cf3109f6aebb88b"
+  },
+  {
     "path": "docs/INSTALL_FOR_CODEX.md",
-    "bytes": 5182,
-    "sha256": "4a987a1c55155d715b9b1520fc9e16b8db12042c2dd86720fb89e8dba25bdef1"
+    "bytes": 6361,
+    "sha256": "d5376c42bf5f3649f67907659e25d5d13dbd0955fe617f77dd51cda90e47ac40"
+  },
+  {
+    "path": "docs/ONBOARDING_FOR_CODEX.md",
+    "bytes": 3142,
+    "sha256": "cab13bd06c44d0bf7b74651d0c02e2e023a8f8a58d1a95708c294efa037e0789"
   },
   {
     "path": "docs/USAGE.md",
@@ -205,49 +455,64 @@
     "sha256": "b8202d82f91e22479f7be7ce387c5e713fdcabb9e972cef95b1ea2e6e4c933c4"
   },
   {
+    "path": "docs/VERSION-0.4.0-dev.md",
+    "bytes": 2280,
+    "sha256": "644c5ff7c854fb202c013de048ae542201d7e44b759b1f82823a3327be3d9f95"
+  },
+  {
+    "path": "docs/WORKFLOW-INTEGRATION.md",
+    "bytes": 2075,
+    "sha256": "dcc2c69e43ddb412a2159f2590be155826d490e137a89aa44c59a50cd94bc9ca"
+  },
+  {
     "path": "docs/beginner-guide.html",
-    "bytes": 34787,
-    "sha256": "12c37299b2877d7a81064dbad956f51efd56f7509717da64487d6a368bea2468"
+    "bytes": 34698,
+    "sha256": "bbf7cba5a3e60bd4454633ffe2ce78f84d5694e665022d62649c1213a8ebbbcb"
   },
   {
     "path": "AGENTS.md",
-    "bytes": 1899,
-    "sha256": "e561348bc7fcdf02b10ee53fe9794bc08ed0500db7b2ec158bdb71a4291b97c0"
+    "bytes": 2346,
+    "sha256": "512c7de43447bdfc4e8a1f9ce06b058971f133784392cad229866799d088577e"
   },
   {
     "path": ".gitignore",
-    "bytes": 191,
-    "sha256": "4a0e7691573f516e7719a1427589b8db8cb013a973e0b8b8ff7fb07fa6dc121a"
+    "bytes": 328,
+    "sha256": "a22cfa93916c28a038b3b394fbb3e7628c9821b014e9415e6431ed1b071e560a"
+  },
+  {
+    "path": ".gitattributes",
+    "bytes": 83,
+    "sha256": "2c4c87e79bcdc09a5f780f205c5d5d38ab77142193af7ecce74b94bf9095d526"
   },
   {
     "path": "package.json",
-    "bytes": 607,
-    "sha256": "462712612809c61a969f604433d99b11adada3306592bace7fd3c1835df55b75"
+    "bytes": 584,
+    "sha256": "00512641e4b87b11a999f0f2bf34e2cda2ce8fe51875725b53f6f0356c61725f"
   },
   {
     "path": "package-lock.json",
-    "bytes": 59675,
-    "sha256": "cb362764e7876f70d1d6544d13c854e4408a9ce4e0f250a41ff3830f6496a8e2"
+    "bytes": 58069,
+    "sha256": "f77beaa11ec9a277f4b4dada1a041be551e76ff69d504ddf981ded71a8ed67a3"
   },
   {
     "path": "PROVENANCE.json",
-    "bytes": 7659,
-    "sha256": "97d74b4f1f4ca5eac73ebd0e27d6fd9251df134fa8d30766509868b8ccd02082"
+    "bytes": 7263,
+    "sha256": "7d2141d1fbdeb6ce28e5cc2fc3b120b663720e6b0e2cab9f348bffc503a324b5"
   },
   {
     "path": "README.md",
-    "bytes": 11562,
-    "sha256": "99603b95c166bcee9e00a800a13869b9bc5904e0f2b537670dd66c9308401939"
+    "bytes": 12055,
+    "sha256": "2984d66c68badea74eb34a1b9d47ec1fe07b6aee6be1b3aee18d70ced9b70b83"
   },
   {
     "path": "验收说明.md",
-    "bytes": 5270,
-    "sha256": "123c5694e36b9ea1243d47b845fca1e18d28ef39eab79b9f5d864317a49a2f9c"
+    "bytes": 5635,
+    "sha256": "ef8b0776db58676b9feb31fdbe151948decde0eb0ad7619d7b4dc0aa7887d32f"
   },
   {
     "path": "install.ps1",
-    "bytes": 5343,
-    "sha256": "0b6a65fd6d4c3a2f9c2118e91531501b48501f4b17eba401bbd64410d7f5f71d"
+    "bytes": 6848,
+    "sha256": "839b887a93f7e0cc67c6e077679c7a3148ec7370fcc480de8bb565ff610fff3a"
   },
   {
     "path": "install.cmd",
@@ -256,13 +521,13 @@
   },
   {
     "path": "verify.ps1",
-    "bytes": 889,
-    "sha256": "ebc4e3c86b9396125bcbc76336d4cb88e6bcaf730f207f17a04256cb898c20ae"
+    "bytes": 990,
+    "sha256": "81d92b79fc69213ee5bc9ff716bac3a313031c37b664dfec7e6df1d25bc248ee"
   },
   {
     "path": "uninstall.ps1",
-    "bytes": 572,
-    "sha256": "bdf4c469cbd2e27e84fb78a31fca0a67239c23cddd8857bbf569afe4bcff33b5"
+    "bytes": 678,
+    "sha256": "d30af9d9f116d9260b6b07012aa2d9ce04d4140c591290343bf20ce3c6b4562d"
   },
   {
     "path": "tests/configure.test.mjs",
@@ -276,8 +541,8 @@
   },
   {
     "path": "tests/mcp.test.mjs",
-    "bytes": 2545,
-    "sha256": "473a2b77615336241a1ceed02466d7d8ac747d2aa2bf5da2b63c24f32ab47720"
+    "bytes": 2518,
+    "sha256": "02f04ac1e85ffbe99a7c4c86eaa9daa852008ff8259ce393f1fed52dc1443a88"
   },
   {
     "path": "tests/native-pptx.test.mjs",

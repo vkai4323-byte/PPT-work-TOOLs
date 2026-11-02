@@ -1,0 +1,21 @@
+{
+  "python": {
+    "version": "3.13.17",
+    "url": "https://www.python.org/ftp/python/3.13.17/python-3.13.17-amd64.zip",
+    "sha256": "b26ca4b4ee51e157836049934d2b8eabd55939be296f3130254251b6df96ec2f",
+    "executable": "python.exe",
+    "source": "https://www.python.org/ftp/python/3.13.17/windows-3.13.17.json"
+  },
+  "webbridge": {
+    "version": "2.0.24",
+    "url": "https://cdn.kimi.com/webbridge/v2.0.24/releases/kimi-webbridge-windows-amd64.exe",
+    "sha256": "2a904cacff1ae94e8424e6746dc6ecb421d9073f955d9661fa8581ab65c0a973",
+    "source": "https://cdn.kimi.com/webbridge/install.ps1"
+  },
+  "officecli": {
+    "version": "1.0.160",
+    "url": "https://d.officecli.ai/releases/download/v1.0.160/officecli-win-x64.exe",
+    "sha256": "c590ca9d464f2b03362825b0f2615efcae33ce3fc0edaeeef29f7ddacb4c5424",
+    "source": "https://d.officecli.ai/releases/download/v1.0.160/SHA256SUMS"
+  }
+}

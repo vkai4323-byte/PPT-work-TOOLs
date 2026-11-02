@@ -1,0 +1,2 @@
+# Keep distribution hashes stable when cloning with Windows core.autocrlf.
+* -text

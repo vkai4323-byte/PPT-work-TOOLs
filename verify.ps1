@@ -1,6 +1,6 @@
 param([string]$InstallRoot = (Join-Path $env:LOCALAPPDATA 'PPTWorkbench'))
 $ErrorActionPreference='Stop'
-$runtimeRoot=Join-Path $InstallRoot '0.3.1'
+$runtimeRoot=Join-Path $InstallRoot '0.4.0-dev'
 $request=Get-Content -LiteralPath (Join-Path $runtimeRoot 'install-request.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $previousBrowsers=$env:PLAYWRIGHT_BROWSERS_PATH
 try {
@@ -9,6 +9,7 @@ try {
   if($LASTEXITCODE -ne 0) { throw 'PPT verification failed.' }
   & $request.node (Join-Path $runtimeRoot 'tools\verify-registration.mjs') (Join-Path $runtimeRoot 'install-request.json')
   if($LASTEXITCODE -ne 0) { throw 'Codex registration verification failed.' }
+  & (Join-Path $runtimeRoot 'tools/verify-workflow.ps1') -RuntimeRoot $runtimeRoot -UserHome $request.userHome
 } finally {
   if($null -eq $previousBrowsers) {Remove-Item Env:PLAYWRIGHT_BROWSERS_PATH -ErrorAction SilentlyContinue} else {$env:PLAYWRIGHT_BROWSERS_PATH=$previousBrowsers}
 }

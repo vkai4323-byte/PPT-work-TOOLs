@@ -1,0 +1,210 @@
+{
+  "delivery": "customer_downloads_official_fixed_artifacts",
+  "redistributed_wheels": false,
+  "target": "Windows x64 CPython 3.13",
+  "source_builds": [
+    "qrcode-terminal==0.8"
+  ],
+  "packages": [
+    {
+      "name": "anyio",
+      "version": "4.15.1",
+      "url": "https://files.pythonhosted.org/packages/12/b8/4bd346e22b28902df4d651910f5242c28d84e4a5c2435ca5c3f797ed7e2e/anyio-4.15.1-py3-none-any.whl",
+      "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "APScheduler",
+      "version": "3.11.3",
+      "url": "https://files.pythonhosted.org/packages/42/c9/8638db32514dbb9157b3d82680c6faea89283523edf9ed2415ea3884f2ae/apscheduler-3.11.3-py3-none-any.whl",
+      "sha256": "bbeb2ec02d23d3c06a6c07ed7f0f3939ada6680eb121fae809a69bb42c537a30",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "beautifulsoup4",
+      "version": "4.15.0",
+      "url": "https://files.pythonhosted.org/packages/88/c6/92fcd42f1ba33e1184263f25bfabf3d27c383410470f169e4b8163bf9c17/beautifulsoup4-4.15.0-py3-none-any.whl",
+      "sha256": "d6f88de62e1d4e38ecb1077eb9724cd0eff29d2a08ca16a401e9b9e93f117cf9",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT License"
+    },
+    {
+      "name": "bilibili-api-python",
+      "version": "17.4.2",
+      "url": "https://files.pythonhosted.org/packages/8e/41/c12f4c52cecd6ca6c4bee49a8949ed3df3561e5dd12b891aba96dcdc4502/bilibili_api_python-17.4.2-py3-none-any.whl",
+      "sha256": "91e002b2e0bcd3eb50239e35ceb849133b574f407a92a06636e1de1031b6d09d",
+      "distribution": "bdist_wheel",
+      "license_metadata": "GPL-3.0-or-later"
+    },
+    {
+      "name": "brotli",
+      "version": "1.2.1",
+      "url": "https://files.pythonhosted.org/packages/96/c2/0c7abb25013043d4bcf7dd768d343bf7dee6ce99ac8c172f7ee4aef1c772/brotli-1.2.1-cp313-cp313-win_amd64.whl",
+      "sha256": "e6c4fa55eab6b5684b33239597876a18a35ce1280b63ab960164032afbb8783f",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "url": "https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl",
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MPL-2.0"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "url": "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl",
+      "sha256": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6",
+      "distribution": "bdist_wheel",
+      "license_metadata": ""
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "url": "https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "url": "https://files.pythonhosted.org/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+      "distribution": "bdist_wheel",
+      "license_metadata": "BSD-3-Clause"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "url": "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+      "distribution": "bdist_wheel",
+      "license_metadata": "BSD-3-Clause"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "url": "https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "distribution": "bdist_wheel",
+      "license_metadata": "BSD-3-Clause"
+    },
+    {
+      "name": "lxml",
+      "version": "6.1.3",
+      "url": "https://files.pythonhosted.org/packages/c0/28/e46a7702bd95e9043291f7c3539b6184cba66f96cea9936f20939b284eeb/lxml-6.1.3-cp313-cp313-win_amd64.whl",
+      "sha256": "e477aca0bc0d19f3b4ae9e4f2a1cfd687c31bf772d78734910658186b40b2477",
+      "distribution": "bdist_wheel",
+      "license_metadata": "BSD-3-Clause"
+    },
+    {
+      "name": "multidict",
+      "version": "7.2.1",
+      "url": "https://files.pythonhosted.org/packages/74/6b/3f90a565e6eb94266d197d91cca5833b34ab89768a24f7f07b29bc186e09/multidict-7.2.1-cp313-cp313-win_amd64.whl",
+      "sha256": "ce0f884408938fbd72e764031d0e23a8f5e438a7bf73641089c7a6465cb84456",
+      "distribution": "bdist_wheel",
+      "license_metadata": "Apache-2.0"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0",
+      "url": "https://files.pythonhosted.org/packages/d7/ed/1b16fb66a37e1b9e41370b93b2c614c7da761a5b2a41dc333f7af4639962/pillow-13.0.0-cp313-cp313-win_amd64.whl",
+      "sha256": "9dda0788a9932776a75d8bcc020076edc308ce2508b51f6739a45e3158b3fc42",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT-CMU"
+    },
+    {
+      "name": "propcache",
+      "version": "0.5.4",
+      "url": "https://files.pythonhosted.org/packages/01/bc/e0a7b84af04ec02d73a48aa71f091e1e4a2107e3074b7ce12195b66901f4/propcache-0.5.4-cp313-cp313-win_amd64.whl",
+      "sha256": "0c889f6fa84957bc7e8b4eab71fd16a0455068d5045e3aa40c733071d2b2fd77",
+      "distribution": "bdist_wheel",
+      "license_metadata": "Apache-2.0"
+    },
+    {
+      "name": "pycryptodomex",
+      "version": "3.24.1",
+      "url": "https://files.pythonhosted.org/packages/13/4c/2c1963e4154da534a3b3a4d6ee9549f5cac4ecffe986d3b470d08b9c4df6/pycryptodomex-3.24.1-cp37-abi3-win_amd64.whl",
+      "sha256": "82eb0dd8a95be97f03527b108ee49f9b86a7c534fa47fa7a510be3eab8ea9acd",
+      "distribution": "bdist_wheel",
+      "license_metadata": "BSD, Public Domain"
+    },
+    {
+      "name": "PyJWT",
+      "version": "2.15.1",
+      "url": "https://files.pythonhosted.org/packages/50/ca/44de4e75f8aadc457f0634be3b542815078ded46dca30efb960edeecad6e/pyjwt-2.15.1-py3-none-any.whl",
+      "sha256": "42d59d631f7768a1028a64c7ff581a9bf7519804daf91fc5b6c56e30eec5e193",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "url": "https://files.pythonhosted.org/packages/97/c9/39d5b874e8b28845e4ec2202b5da735d0199dbe5b8fb85f91398814a9a46/pyyaml-6.0.3-cp313-cp313-win_amd64.whl",
+      "sha256": "79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "qrcode",
+      "version": "8.2",
+      "url": "https://files.pythonhosted.org/packages/dd/b8/d2d6d731733f51684bbf76bf34dab3b70a9148e8f2cef2bb544fccec681a/qrcode-8.2-py3-none-any.whl",
+      "sha256": "16e64e0716c14960108e85d853062c9e8bba5ca8252c0b4d0231b9df4060ff4f",
+      "distribution": "bdist_wheel",
+      "license_metadata": "BSD"
+    },
+    {
+      "name": "qrcode-terminal",
+      "version": "0.8",
+      "url": "https://files.pythonhosted.org/packages/96/62/2422c088b7219db9f78c912418254db9896d1b20ab15e83aae2821419a65/qrcode-terminal-0.8.tar.gz",
+      "sha256": "1e2b69e662b9346e98dd95983033e9d43cff0643d8afda12605f515428e666c0",
+      "distribution": "sdist",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "soupsieve",
+      "version": "3.0.4",
+      "url": "https://files.pythonhosted.org/packages/07/66/473f7ca0be0b06e38ee8c85ee2db184e3981bd769fac2e7c19c8a8865211/soupsieve-3.0.4-py3-none-any.whl",
+      "sha256": "8412826614f9c632227067d0985aeb9f584bd15efc852955430e097a9fe7afbf",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "distribution": "bdist_wheel",
+      "license_metadata": "PSF-2.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6",
+      "url": "https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl",
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "distribution": "bdist_wheel",
+      "license_metadata": "Apache-2.0"
+    },
+    {
+      "name": "tzlocal",
+      "version": "5.4.5",
+      "url": "https://files.pythonhosted.org/packages/7b/c1/9be4e1a8a30db8729a86628073910e56f85aaf8a659e053f376a2e6ea5a8/tzlocal-5.4.5-py3-none-any.whl",
+      "sha256": "ecab534f6d65d9deb4c4ea52c121ab6dd5958e9b878e71dcb102578269752454",
+      "distribution": "bdist_wheel",
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "yarl",
+      "version": "1.25.1",
+      "url": "https://files.pythonhosted.org/packages/3a/8f/4db01cef62caff0d7a4593ed694fb8a41a27a11158cab80d290221f13e57/yarl-1.25.1-cp313-cp313-win_amd64.whl",
+      "sha256": "1f51020b2eb8a003c84925638ec63c21a750a4bddd3a22ec8eac6a742dadf1b9",
+      "distribution": "bdist_wheel",
+      "license_metadata": "Apache-2.0"
+    }
+  ]
+}
