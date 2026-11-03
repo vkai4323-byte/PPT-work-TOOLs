@@ -27,4 +27,4 @@ B站：读取 root/skills/workbench-bilibili/SKILL.md，使用唯一 bilibili_ba
 
 落版调用 ppt-workbench，遵循已有 PPTX 与新建 deck 的路线和版本保护。素材状态按实际推进 planned → sourced/generated → reviewed → placed → verified。放入图片不等于已验收；必须实际查看变更页和关键裁切。
 
-需要生图时，先读取 references/generation-rules.md v4并按当前图位逐项落实，再调用运行时modules/generation/plan.py做离线计划检查。所有现实人物/场景默认真人实拍，游戏内展示或用户指定风格另记依据；同页图组规划有意义的姿态、镜头差异，记录占位、目标/请求/返回像素、参考用途与标题策略。不要默认方图或花字。Monet固定方图单张有成功证据；2048×1152的16:9可按docs/CUSTOMER_ACCEPTANCE.md进入客户机首次试验，尚无本轮实测。6图批次须绑定6个不同plan哈希及客户集中确认，发行者不预设预算上限，不代表无限支付授权。参考编辑上传参数及透明背景仍未验证。plan通过不是付款批准，也不是视觉通过；实际提交仅经已安装且获授权的私有适配器执行，不让客户重复提供已有凭据。
+需要生图时，先读取references/generation-rules.md v4；达人视频封面另必读references/cover-generation.md（2026-11-03），以其字图一体和实际人物参考要求覆盖旧的默认叠字做法。每张封面明确asset_type=social_video_cover及cover_contract_version=1，不能省略类型避开检查。PPT页文案保持可编辑，封面内花字默认一体生成并直接检查服务原图；需要达人/参考人物时实际传像素，不能只看图或改成无脸视角。当前文生图入口不能传参考，须由Codex补齐、验证适配，不能假成功。其余按图位落实创意、镜头、目标/请求/返回像素及实际视觉验收。客户回传两页截图说明已开展实机制作，不单凭截图宣称6张原图、参考上传或所有取材均已通过。费用依客户授权及重做条件执行，未知提交不重发。

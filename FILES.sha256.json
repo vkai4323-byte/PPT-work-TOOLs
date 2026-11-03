@@ -111,8 +111,8 @@
   },
   {
     "path": "tools/verify-workflow.ps1",
-    "bytes": 2098,
-    "sha256": "3f219a2d95d81c644d6996d76e09c5c22dec0afe3a89e0c9445213c0d700064b"
+    "bytes": 2131,
+    "sha256": "b1141c20c73627d2973e6d69a8289f95f7aef88ad6b0352eb0b799b910ca5d61"
   },
   {
     "path": "tools/workflow_doctor.py",
@@ -121,8 +121,8 @@
   },
   {
     "path": "skills/ppt-workbench/SKILL.md",
-    "bytes": 7281,
-    "sha256": "7c785d950e79d1bc16469acd9409cbf3cf4ffa40d9073a4b6fe2ba0f26bb51b1"
+    "bytes": 7824,
+    "sha256": "70f691d4bfe6dadaa77958573d39e0f49c2eef35c051b483eeed83d709e3c3db"
   },
   {
     "path": "skills/ppt-workbench/agents/openai.yaml",
@@ -131,13 +131,13 @@
   },
   {
     "path": "skills/ppt-workbench/references/asset-placement.md",
-    "bytes": 7075,
-    "sha256": "0f853f5ca2357a5922071fe43c04ab7cb45968a68ba760f06de2974db8f8445f"
+    "bytes": 7224,
+    "sha256": "532d215d83443454a682d79b9bdbd2956f1293a7dc33e0b841c9e35c86ca1490"
   },
   {
     "path": "skills/ppt-workbench/references/creator-acquisition.md",
-    "bytes": 3976,
-    "sha256": "66cbb6d25bdd775df17325411575be4deb771564a23d988cab85b5fccdd75208"
+    "bytes": 4290,
+    "sha256": "990e6ef75a3b4971a93cfe3196d220b156fbe69f62061d81586763ca9b7251d5"
   },
   {
     "path": "skills/ppt-workbench/references/design-workflow.md",
@@ -176,13 +176,18 @@
   },
   {
     "path": "skills/workbench-creators/SKILL.md",
-    "bytes": 5705,
-    "sha256": "05b064e0733514a9ccb009d0e6ec50c446e849ca050f013d4f4bf2ae8b0a3342"
+    "bytes": 5691,
+    "sha256": "e943be7d3f4770c118de6fffe10578f9614050af7f6245f00fd1c252f9f2ad05"
+  },
+  {
+    "path": "skills/workbench-creators/references/cover-generation.md",
+    "bytes": 4476,
+    "sha256": "81d057034762fe2a07f2c624698789cdbcb6f3e931aed688f47e0258fed7ff38"
   },
   {
     "path": "skills/workbench-creators/references/generation-rules.md",
-    "bytes": 14745,
-    "sha256": "642e5c6c85d47f221cf79d9f0e5b90d5237b42ee226d96aa410913ac17acc7cc"
+    "bytes": 15280,
+    "sha256": "1ad4db4c8acfb5519f6ae97da5128d08216aba24ec7c9585cb0574348138da87"
   },
   {
     "path": "modules/creator-workflow/build-requirements.lock",
@@ -336,8 +341,8 @@
   },
   {
     "path": "modules/generation/README.md",
-    "bytes": 2677,
-    "sha256": "d94ae9f386ffa780679f4bafb73af53b5d4a10383e999183180037cedc2ad620"
+    "bytes": 3255,
+    "sha256": "c587620d4b9ea22313249d6b7e24f85150a5c49775e3e869a86893acf5498105"
   },
   {
     "path": "modules/generation/plan.py",
@@ -356,8 +361,8 @@
   },
   {
     "path": "modules/generation/run.py",
-    "bytes": 2427,
-    "sha256": "b16646ee6ed98593b524e5616b603d5b271b2dbdebc4169dde06c8cc870498e6"
+    "bytes": 2458,
+    "sha256": "5f62e954b6e0fc66538d4a307729db19172fe65a99a55825dced43b229f23b9a"
   },
   {
     "path": "modules/generation/setup_provider.py",
@@ -366,8 +371,8 @@
   },
   {
     "path": "modules/generation/slot_jobs.py",
-    "bytes": 10757,
-    "sha256": "1f9bf93170c9912491feab12da328a7434a920d15e99251681eb27b03323f89c"
+    "bytes": 13664,
+    "sha256": "9ed46593a180152e1d3b72d1662175fefc5bce5012c80c7a21fba4b42ee822d6"
   },
   {
     "path": "examples/验收示例/assets/pixel.png",
@@ -416,8 +421,13 @@
   },
   {
     "path": "docs/CUSTOMER_ACCEPTANCE.md",
-    "bytes": 5371,
-    "sha256": "333323dd2c87c56836bf778c93eafe03f4749d6d58472a3ce64c0f05d0653a18"
+    "bytes": 6831,
+    "sha256": "674dd23121e91c07ee4d30975e2b36d68b670d3987cd7144e7d18c3ff5bad5ef"
+  },
+  {
+    "path": "docs/CUSTOMER_COVER_REPAIR.md",
+    "bytes": 4227,
+    "sha256": "39811266a6ecf9f3ada1efc71d5e9ba9029b8bffd9764b5e3bb92e103fb18905"
   },
   {
     "path": "docs/DEPENDENCY_DELIVERY.md",
@@ -456,8 +466,8 @@
   },
   {
     "path": "docs/VERSION-0.4.0-dev.md",
-    "bytes": 2280,
-    "sha256": "644c5ff7c854fb202c013de048ae542201d7e44b759b1f82823a3327be3d9f95"
+    "bytes": 2760,
+    "sha256": "8ed536640a40f96666d6d692feb1443c68a29330a6986ea54a337bb1c21991cc"
   },
   {
     "path": "docs/WORKFLOW-INTEGRATION.md",
@@ -468,6 +478,11 @@
     "path": "docs/beginner-guide.html",
     "bytes": 34698,
     "sha256": "bbf7cba5a3e60bd4454633ffe2ce78f84d5694e665022d62649c1213a8ebbbcb"
+  },
+  {
+    "path": "docs/workbench-update-guide.html",
+    "bytes": 37179,
+    "sha256": "a298757ecc47303e0a0da2637b1e1425fee5505f3c5b5951e91c54e246caaf67"
   },
   {
     "path": "AGENTS.md",
@@ -498,6 +513,11 @@
     "path": "PROVENANCE.json",
     "bytes": 7263,
     "sha256": "7d2141d1fbdeb6ce28e5cc2fc3b120b663720e6b0e2cab9f348bffc503a324b5"
+  },
+  {
+    "path": "README.md",
+    "bytes": 12912,
+    "sha256": "0167d1e0f87fc1171cd5f720f3d729a1b48d04c695a877296e0697284dd4e080"
   },
   {
     "path": "验收说明.md",
@@ -553,15 +573,5 @@
     "path": "tests/project-state.test.mjs",
     "bytes": 8574,
     "sha256": "3f049e0dc04791a4ae6dd3353162f36226a04b99b94b200b0966f2369dd6db17"
-  },
-  {
-    "path": "README.md",
-    "bytes": 12412,
-    "sha256": "da7b86ee287d2deb4e3e452ae97f831c21b93f8b012e1550658b0cb6b2f0169c"
-  },
-  {
-    "path": "docs/workbench-update-guide.html",
-    "bytes": 37017,
-    "sha256": "3d706b135138b8b9b0dfb49fa7613d35c6bf7b3194a76b535c57f9d152f292d7"
   }
 ]

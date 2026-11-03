@@ -16,7 +16,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $skill '.workbench-creators-managed'
 $runtime=Get-Content -LiteralPath (Join-Path $skill 'runtime.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ([IO.Path]::GetFullPath($runtime.root) -ne [IO.Path]::GetFullPath($moduleRoot)) { throw 'Creator skill points to another runtime.' }
 if ([IO.Path]::GetFullPath($runtime.python) -ne [IO.Path]::GetFullPath($python)) { throw 'Creator Python registration mismatch.' }
-foreach ($relative in @('SKILL.md','references/generation-rules.md')) {
+foreach ($relative in @('SKILL.md','references/generation-rules.md','references/cover-generation.md')) {
   $expected=Join-Path $RuntimeRoot ('skills/workbench-creators/'+$relative)
   $actual=Join-Path $skill $relative
   if (-not (Test-Path -LiteralPath $actual) -or (Get-FileHash -LiteralPath $actual).Hash -ne (Get-FileHash -LiteralPath $expected).Hash) {throw ('Creator skill resource missing or changed: '+$relative)}

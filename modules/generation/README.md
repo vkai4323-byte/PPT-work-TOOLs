@@ -1,5 +1,7 @@
 # 生图任务集成与客户验收
 
+2026-11-03封面修正：视频封面按skills/workbench-creators/references/cover-generation.md执行，标题默认在生成原图内完成；人物身份参考必须实际传像素，不能只审看或改无脸视角。新封面计划使用asset_type=social_video_cover与cover_contract_version=1。当前传输仍只有文生图参数，authorize_submission明确阻断需人物参考/像素输入的任务，避免交给不支持参考的入口假成功；这是质量检查已补，不是参考接口已接通。旧任务的status/download/resume仍可读取原计划。
+
 plan.py是离线图位检查，resume.py是离线台账接续；两者不加载供应商、不读凭据、不联网。run.py是显式在线入口，只有--execute-authorized才执行；submit还须先通过与完整plan哈希绑定的客户付费批准，再加载私有适配器。
 
 当前成功证据仅为交接中的1024×1024固定方图。2048×1152的16:9可按交接文档明确示例进入客户机首次试验，须标记provider_size_evidence=documented_customer_handoff_2026-11-02；尚未取得本轮真实非方形生成证据。其他比例可规划，服务映射未启用。参考编辑、透明背景和并发付费生成未启用。

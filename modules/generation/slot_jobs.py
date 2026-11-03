@@ -14,7 +14,31 @@ def read_retry(call,attempts=3):
 
 def digest(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
 
-def validate(plan):
+def validate_cover_contract(plan):
+    if plan.get('asset_type')!='social_video_cover':return
+    if plan.get('cover_contract_version')!=1:raise ValueError('cover_contract_v1_required')
+    for key in ('creator_reference_summary','title_style'):
+        if not isinstance(plan.get(key),str) or not plan[key].strip():raise ValueError('missing_'+key)
+    mode=plan.get('title_render_mode')
+    if mode=='generated_in_image':
+        title=plan.get('title_text')
+        if not isinstance(title,str) or not title.strip() or title not in plan.get('prompt',''):raise ValueError('exact_cover_title_required_in_generation_prompt')
+    elif mode not in ('no_text','editable_overlay') or not plan.get('user_title_exception'):
+        raise ValueError('cover_title_must_be_generated_in_image_unless_user_overrides')
+    for key in ('reference_has_person','reference_person_required'):
+        if type(plan.get(key))is not bool:raise ValueError('explicit_'+key+'_required')
+    if plan['reference_has_person'] and not plan['reference_person_required'] and not plan.get('reference_person_exception'):raise ValueError('reference_person_omission_requires_content_or_user_basis')
+    if plan['reference_person_required']:
+        if plan.get('identity_mode') not in ('specified_creator','specified_character'):raise ValueError('required_creator_cannot_be_replaced_by_faceless_concept')
+        inputs=plan.get('reference_inputs',[])
+        role='creator_identity' if plan['identity_mode']=='specified_creator' else 'character_design'
+        if not isinstance(inputs,list) or not any(isinstance(r,dict) and r.get('role')==role and r.get('delivery')=='send_pixels' for r in inputs):raise ValueError('actual_creator_reference_input_required_not_just_review')
+    for reference in plan.get('reference_inputs',[]):
+        if not isinstance(reference,dict) or reference.get('delivery')!='send_pixels':raise ValueError('explicit_reference_pixel_delivery_required')
+        path=Path(reference.get('source_file',''))
+        if not path.is_absolute() or not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=reference.get('source_sha256'):raise ValueError('reference_input_missing_or_changed')
+
+def validate(plan,*,legacy_read=False):
     for key in ('job_id','slot_id','slide_id'):
         if not isinstance(plan.get(key),str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,64}',plan[key]):raise ValueError('invalid_'+key)
     if plan.get('generation_rules_version')!=4:raise ValueError('generation_rules_v4_required')
@@ -31,9 +55,10 @@ def validate(plan):
     if plan.get('placement_unit') not in ('px','emu','cm') or any(type(box.get(k)) not in (int,float) for k in ('x','y','width','height')) or min(box['width'],box['height'])<=0:raise ValueError('placement_box_required')
     if abs(box['width']/box['height']-a/b)>.01 and not plan.get('size_fallback'):raise ValueError('placement_ratio_requires_explicit_fallback')
     if plan.get('realism')!='real_photo' and not (plan.get('gameplay_display_reason') or plan.get('style_exception_reason')):raise ValueError('real_photo_default_requires_exception')
-    if plan['identity_mode']=='specified_creator' and not plan.get('reference_reviews'):raise ValueError('creator_reference_required')
+    if plan['identity_mode'] in ('specified_creator','specified_character') and not plan.get('reference_reviews'):raise ValueError('creator_reference_required')
     if plan.get('same_page_group') and not (plan.get('differentiation') or plan.get('comparison_reason')):raise ValueError('same_page_difference_required')
     if plan.get('preflight_review')!='passed':raise ValueError('caller_preflight_review_required')
+    if not legacy_read or plan.get('cover_contract_version')is not None:validate_cover_contract(plan)
     params=plan.get('provider_params',{})
     expected={'model','prompt','size','n','quality','output_format','background'}
     if set(params)!=expected or params['prompt']!=plan['prompt'] or params['n']!=1 or params['output_format']!='png' or params['background']!='opaque':raise ValueError('only_single_opaque_text_to_image_enabled')
@@ -60,6 +85,10 @@ def locked(directory):
 
 def authorize_submission(plan,approval):
     request_hash=validate(plan)
+    # The current adapter submits only provider_params. It cannot transfer pixels.
+    # A reviewed reference or caller flag must never masquerade as an actual input.
+    if plan.get('identity_mode') in ('specified_creator','specified_character') or plan.get('reference_person_required') or plan.get('reference_inputs'):
+        raise ValueError('reference_image_transport_not_implemented_do_not_substitute_text_to_image')
     size=plan['provider_params']['size']
     if size!='1024x1024':
         if size!='2048x1152' or plan.get('aspect_ratio')!='16:9' or plan.get('provider_size_evidence')!='documented_customer_handoff_2026-11-02':raise ValueError('non_square_size_requires_documented_trial_mapping')
@@ -73,7 +102,7 @@ def authorize_submission(plan,approval):
 
 class Jobs:
     def __init__(self,root):self.root=Path(root)
-    def directory(self,plan):validate(plan);return self.root/plan['job_id']
+    def directory(self,plan,*,legacy_read=False):validate(plan,legacy_read=legacy_read);return self.root/plan['job_id']
     def submit(self,plan,approval,transport):
         request_hash=authorize_submission(plan,approval)
         directory=self.directory(plan)
@@ -86,10 +115,10 @@ class Jobs:
             if not isinstance(task,str) or not re.fullmatch(r'[A-Za-z0-9_:-]{1,128}',task):raise ValueError('invalid_task_id_no_resubmit')
             record.update(state='accepted',provider_task_id=task);atomic_json(file,record);return record
     def status(self,plan,transport):
-        directory=self.directory(plan)
+        directory=self.directory(plan,legacy_read=True)
         with locked(directory):
             file=directory/'job.json';record=json.loads(file.read_text(encoding='utf-8'))
-            if record['request_hash']!=validate(plan):raise ValueError('plan_changed')
+            if record['request_hash']!=validate(plan,legacy_read=True):raise ValueError('plan_changed')
             task=record.get('provider_task_id')
             if not task:raise ValueError('missing_confirmed_task_id_no_resubmit')
             result=read_retry(lambda:transport.status(task))
@@ -99,10 +128,10 @@ class Jobs:
             record['usage']={'credits':usage.get('credits'),'status':usage.get('status'),'source':'provider_status_not_estimated'}
             atomic_json(file,record);return record
     def download(self,plan,transport):
-        directory=self.directory(plan)
+        directory=self.directory(plan,legacy_read=True)
         with locked(directory):
             file=directory/'job.json';record=json.loads(file.read_text(encoding='utf-8'))
-            if record['request_hash']!=validate(plan):raise ValueError('plan_changed')
+            if record['request_hash']!=validate(plan,legacy_read=True):raise ValueError('plan_changed')
             task=record.get('provider_status',{})
             if task.get('task_id')!=record.get('provider_task_id') or task.get('status')!='success':raise ValueError('confirmed_success_required')
             images=task.get('output',{}).get('images',[])
@@ -125,10 +154,10 @@ class Jobs:
             record.update(state='downloaded_not_visual_reviewed',file=str(output),sha256=hashlib.sha256(data).hexdigest(),actual_width_px=plan['requested_width_px'],actual_height_px=plan['requested_height_px'],image_review='pending',group_review='pending')
             atomic_json(file,record);return record
     def resume(self,plan):
-        directory=self.directory(plan);file=directory/'job.json'
+        directory=self.directory(plan,legacy_read=True);file=directory/'job.json'
         if not file.exists():return {'state':'not_submitted','next':'validate_payment_authorization_before_submit'}
         record=json.loads(file.read_text(encoding='utf-8'))
-        if record['request_hash']!=validate(plan):raise ValueError('plan_changed')
+        if record['request_hash']!=validate(plan,legacy_read=True):raise ValueError('plan_changed')
         if (directory/'writer.lock').exists():return {'state':'writer_lock_present','next':'inspect_owner_process_do_not_remove_automatically'}
         if not record.get('provider_task_id'):return {'state':'submission_uncertain_do_not_resubmit','next':'reconcile_provider_task_manually_no_guessed_id'}
         return {'state':record['state'],'next':'verify_existing_download' if (directory/'result.png').exists() else 'download' if record.get('provider_status',{}).get('status')=='success' else 'status','provider_task_id':record['provider_task_id'],'image_review':record.get('image_review','pending')}

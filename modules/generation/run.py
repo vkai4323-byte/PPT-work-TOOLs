@@ -7,7 +7,7 @@ from slot_jobs import Jobs,validate,authorize_submission
 def main():
     p=argparse.ArgumentParser();p.add_argument('action',choices=['submit','status','download']);p.add_argument('--plan',type=Path,required=True);p.add_argument('--jobs-root',type=Path,required=True);p.add_argument('--runtime-root',type=Path,required=True);p.add_argument('--approval',type=Path);p.add_argument('--execute-authorized',action='store_true');a=p.parse_args()
     if not a.execute_authorized:raise ValueError('explicit_live_execution_required')
-    plan=json.loads(a.plan.read_text(encoding='utf-8-sig'));validate(plan);approval={}
+    plan=json.loads(a.plan.read_text(encoding='utf-8-sig'));validate(plan,legacy_read=a.action!='submit');approval={}
     if a.action=='submit':
         if not a.approval:raise ValueError('payment_approval_required_before_transport_import')
         approval=json.loads(a.approval.read_text(encoding='utf-8-sig'));authorize_submission(plan,approval)
